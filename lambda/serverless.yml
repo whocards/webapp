@@ -7,6 +7,13 @@ provider:
   memorySize: 128
 
 functions:
+  getText:
+    handler: handler.getText
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
   getCard:
     handler: handler.getCard
     events:
