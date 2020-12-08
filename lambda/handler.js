@@ -26,14 +26,6 @@ const getCard = async (event, context, callback) => {
 	const body = JSON.stringify({
 		blocks: [
 			{
-				type: 'header',
-				text: {
-					type: 'plain_text',
-					text: 'Who Card',
-					emoji: true
-				}
-			},
-			{
 				type: 'section',
 				text: {
 					type: 'mrkdwn',
