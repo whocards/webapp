@@ -9,7 +9,5 @@
   "author": "Avi Charlop",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  }
+  "dependencies": {}
 }
