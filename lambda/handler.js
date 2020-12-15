@@ -1,12 +1,16 @@
-const CARDS = require('../static/questions')
+const fetch = require('node-fetch')
+
 const BASE_URL = 'https://raw.githubusercontent.com/acharlop/whocards/main'
+const QUESTIONS_URI = '/static/questions.json'
 const IMAGE_URI = '/images/'
 const IMAGE_COUNT = 6
 
-const randomNumber = (max) => Math.floor(Math.random() * max)
+const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
-const fetchCard = () => {
-	return CARDS[randomNumber(CARDS.length)].en
+const fetchCard = async () => {
+	const cards = await fetch(BASE_URL + QUESTIONS_URI).then(res => res.json())
+
+	return cards[randomNumber(0, cards.length - 1)].en
 }
 
 const getText = async (event, context, callback) => {
@@ -17,7 +21,7 @@ const getText = async (event, context, callback) => {
 
 const getCard = async (event, context, callback) => {
 	const card = await fetchCard()
-	const image_url = BASE_URL + IMAGE_URI + randomNumber(IMAGE_COUNT) + '.png'
+	const image_url = BASE_URL + IMAGE_URI + randomNumber(1, IMAGE_COUNT) + '.png'
 	
 	const body = JSON.stringify({
 		response_type: 'in_channel',
@@ -36,9 +40,12 @@ const getCard = async (event, context, callback) => {
 			}
 		]
 	})
-	
+
 	callback(null, { statusCode: 200, body })
 }
+
+// const test = async () => {}
+// test()
 
 module.exports = {
 	getCard,
