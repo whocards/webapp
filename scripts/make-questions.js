@@ -7,6 +7,7 @@ const questionsPath = path.join(rootPath, 'questions.json')
 
 const questionsMap = {}
 const questions = []
+let questionNumber = 0
 
 // read directory
 const files = fs.readdirSync(directoryPath)
@@ -24,7 +25,8 @@ const firstKey = Object.keys(questionsMap)[0]
 
 for (let i=1; i < questionsMap[firstKey].length; i=i+3) {
   const question = {
-    en: questionsMap[firstKey][i-1]
+    questionId: ++questionNumber,
+    en: questionsMap[firstKey][i-1],
   }
 
   Object.keys(questionsMap).forEach(key => {
