@@ -11,7 +11,7 @@ const languages = Object.keys(JSON.parse(fs.readFileSync(questionsPath, 'utf8'))
 const data = {}
 
 languages.forEach(lang => {
-  if (CountryLanguage.countryCodeExists(lang.split('-')[0])) {
+  if (CountryLanguage.languageCodeExists(lang.split('-')[0])) {
     if (!lang.includes('-')) {
       data[lang] = CountryLanguage.getLanguage(lang).name[0]
     } else {
