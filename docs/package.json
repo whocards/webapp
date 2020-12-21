@@ -2,6 +2,7 @@
   "name": "whocards",
   "version": "0.1.0",
   "private": false,
+  "license": "MIT",
   "homepage": "https://whocard.cc",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
