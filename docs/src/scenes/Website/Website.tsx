@@ -24,8 +24,8 @@ export const Website: React.FunctionComponent<WebsiteProps> = () => {
 
 	return (
 		<div className='website'>
-			<h1 className="coming-soon">Coming soon!</h1>
-			<img src={IMG_URL.replace(IMG_NN, img.toString())} className="App-logo" alt="logo" />
+			<h1 className='coming-soon'>Coming soon!</h1>
+			<img height='128' width='128' src={IMG_URL.replace(IMG_NN, img.toString())} className='App-logo' alt='logo' />
 		</div>
 	)
 }
