@@ -10,7 +10,7 @@ interface WebsiteProps {}
 const IMG_NN = 'NN'
 const IMG_URL = `https://raw.githubusercontent.com/acharlop/whocards/main/images/${IMG_NN}.png?raw=true`
 
-export const Website: React.FunctionComponent<WebsiteProps> = ({}) => {
+export const Website: React.FunctionComponent<WebsiteProps> = () => {
 	const [img,setImg] = useState(1)
 
 	useEffect(() => {

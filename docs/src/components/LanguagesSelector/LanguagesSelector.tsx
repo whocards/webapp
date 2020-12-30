@@ -1,7 +1,5 @@
 import React, {
-	ChangeEvent,
 	useContext,
-	useEffect,
 	useState,
 } from 'react'
 import LanguageContext from 'contexts/language.context';

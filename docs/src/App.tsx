@@ -1,12 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import { Header } from './components/Header';
-import { Questions } from './components/Questions/Questions';
 import LanguageContext from './contexts/language.context';
-import {
-  getDefaultLanguage,
-  randomNumber,
-} from './helpers'
+import { getDefaultLanguage } from './helpers'
 import { Cards } from './scenes/Cards';
 import { Website } from './scenes/Website';
 

@@ -6,6 +6,7 @@ body {
 html {
   --color-background: #070707;
   --color-text: #DEBC8E;
+  --color-disabled: #484848;
   background: var(--color-background);
   color: var(--color-text);
 }
@@ -31,6 +32,15 @@ html {
 
 .hover:hover {
   color: white;
+}
+
+.hover.disabled {
+  cursor: initial;
+  color: var(--color-disabled);
+}
+
+.hover.disabled:hover {
+  color: var(--color-disabled);
 }
 
 div[class^='arrow-'] {

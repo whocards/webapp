@@ -4,7 +4,7 @@ import { Questions } from 'components/Questions';
 
 interface CardsProps {}
 
-export const Cards: React.FunctionComponent<CardsProps> = ({}) => {
+export const Cards: React.FunctionComponent<CardsProps> = () => {
 
 	return (
 		<div className='flex-center'>

@@ -1,40 +1,51 @@
 import React, {
 	useContext,
-	useEffect,
 	useState,
 } from 'react'
 import LanguageContext from 'contexts/language.context';
 import QUESTIONS from 'data/questions.json'
-import { randomNumber } from 'helpers';
+import { randomList } from 'helpers';
 import './Questions.css'
 
 interface QuestionsProps {}
 
+const MAX: number = QUESTIONS.length-1
+
 export const Questions: React.FunctionComponent<QuestionsProps> = () => {
 	// @ts-ignore
 	const { language } = useContext(LanguageContext)
-	const [id, setId] = useState<number>(randomNumber(0, QUESTIONS.length - 1))
+	const [list] = useState(randomList(1, MAX))
+	const [index, setIndex] = useState<number>(0)
 
-	const getNextQuestion = () => {
-		setId(randomNumber(0, QUESTIONS.length - 1))
+	const hasNext = index < MAX - 1
+	const hasPrevious = !!index
+
+	const next = () => {
+		if (hasNext) {
+			setIndex(i => ++i)
+		}
 	}
 
-	useEffect(() => {
-		getNextQuestion()
-	}, [])
-
-	if (id < 0) {
-		getNextQuestion()
+	const previous = () => {
+		if (hasPrevious) {
+			setIndex(i => --i)
+		}
 	}
 
 	// @ts-ignore
-	const question = () => QUESTIONS[id][language]
+	const question = () => QUESTIONS[list[index]][language]
 
 	return (
 		<div className='flex-row p1'>
-			<div className='arrow-left hover' />
+			<div
+				className={`arrow-left hover ${hasPrevious ? '' : 'disabled'}`}
+				onClick={previous}
+			/>
 			<h2 className='question'>{ question() }</h2>
-			<div className='arrow-right hover' onClick={getNextQuestion} />
+			<div
+				className={`arrow-right hover ${hasNext ? '' : 'disabled'}`}
+				onClick={next}
+			/>
 		</div>
 	)
 }
