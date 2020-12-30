@@ -5,27 +5,34 @@ import React, {
 import LanguageContext from 'contexts/language.context';
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
+import { isTouchDevice } from 'helpers';
 
 export const LanguagesSelector: React.FunctionComponent = () => {
-	const [hovered, setHovered] = useState(false)
+	const [show, setShow] = useState(false)
 	// @ts-ignore
 	const { language, setLanguage } = useContext(LanguageContext)
 
 	const change = (value: string) => {
 		setLanguage(value)
-		setHovered(false)
+		setShow(false)
 	}
 
 	const languages: string[] = Object.keys(LANGUAGES)
 	languages.splice(languages.indexOf(language), 1);
 
+	const hover = (set: boolean) => {
+		if (!isTouchDevice()) {
+			setShow(set)
+		}
+	}
+
 	return (
 		<div
 			className='selector-container'
-			onMouseEnter={() => setHovered(true)}
-			onMouseLeave={() => setHovered(false)}
+			onMouseEnter={() => hover(true)}
+			onMouseLeave={() => hover(false)}
 		>
-			{ hovered && languages.map(lang =>
+			{ show && languages.map(lang =>
 				<div
 					className='hover'
 					key={lang.toString()}
@@ -34,7 +41,7 @@ export const LanguagesSelector: React.FunctionComponent = () => {
 			)}
 			<div
 				className='selected'
-				onClick={() => setHovered(val => !val)}
+				onClick={() => setShow(val => !val)}
 			>{language}</div>
 		</div>
 		// <select value={language} onChange={change}>

@@ -18,3 +18,5 @@ export const randomList = (min: number, max: number): number[] => {
 
 	return array
 }
+
+export const isTouchDevice = (): boolean => 'ontouchstart' in window
