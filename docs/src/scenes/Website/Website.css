@@ -1,0 +1,12 @@
+.website {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.website > img {
+	transform: scale(3);
+	display: block;
+	margin-top: 20vh;
+}

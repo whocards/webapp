@@ -1,0 +1,16 @@
+.selector-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 1em;
+	padding-right: 1em;
+}
+
+.selector-container > div {
+	padding: .5em;
+}
+
+.selected {
+	cursor: pointer;
+	user-select: none;
+}
