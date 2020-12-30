@@ -2,6 +2,7 @@ import React, {
 	useContext,
 	useState,
 } from 'react'
+import useEventListener from '@use-it/event-listener';
 import LanguageContext from 'contexts/language.context';
 import QUESTIONS from 'data/questions.json'
 import { randomList } from 'helpers';
@@ -31,6 +32,16 @@ export const Questions: React.FunctionComponent<QuestionsProps> = () => {
 			setIndex(i => --i)
 		}
 	}
+
+	useEventListener('keydown', (event) => {
+		// @ts-ignore
+		const { key } = event
+		if (key === 'ArrowRight') {
+			next()
+		} else if (key === 'ArrowLeft') {
+			previous()
+		}
+	})
 
 	// @ts-ignore
 	const question = () => QUESTIONS[list[index]][language]
