@@ -30,21 +30,22 @@ export const Website: React.FunctionComponent<WebsiteProps> = ({ showCards }) =>
 
 	return (
 		<div className='container'>
+			<h1 className='coming-soon'>{ downloading ? 'Choose your language' : 'More info coming soon, stay tuned!' }</h1>
 			{ downloading && <>
-				<button className='light' onClick={toggleDownloading}>Back</button>
 				{ Object.entries(LANGUAGES).map(([key, value]) => (
 					<a
 						key={key}
 						className='button'
 						target='_blank'
+						rel='noreferrer'
 						href={`/cards/latest/whocards-${key}.pdf`}
 						download
 						onClick={toggleDownloading}
 					>{value}</a>
 				))}
+				<button className='light' onClick={toggleDownloading}>Back</button>
 			</>}
 			{ !downloading && <>
-        <h1 className='coming-soon'>More info coming soon, stay tuned!</h1>
         <img height='128' width='128' src={ IMG_URL.replace(IMG_NN, img.toString()) } className='App-logo' alt='logo'/>
         <div className='links'>
           <button className='light' onClick={ () => showCards() }>Online cards</button>
