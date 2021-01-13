@@ -6,7 +6,10 @@ body {
 html {
   --color-background: #070707;
   --color-text: #DEBC8E;
+  /* TODO rename to grays */
   --color-disabled: #484848;
+  --color-button: #5E5E5E;
+  --color-button-hover: #323232;
   background: var(--color-background);
   color: var(--color-text);
 }

@@ -3,7 +3,9 @@ import './Cards.css';
 import { Questions } from 'components/Questions';
 import { Helmet } from 'react-helmet-async';
 
-interface CardsProps {}
+interface CardsProps {
+	showCards: Function;
+}
 
 export const Cards: React.FunctionComponent<CardsProps> = () => {
 

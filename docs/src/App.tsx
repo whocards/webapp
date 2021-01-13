@@ -37,7 +37,7 @@ function App() {
 						<Header show={ showCards } toggle={ toggleShow }/>
 					</div>
 					<div className='flex-center'>
-						<Body/>
+						<Body showCards={toggleShow} />
 					</div>
 				</div>
 			</HelmetProvider>
