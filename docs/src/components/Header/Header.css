@@ -37,6 +37,8 @@ li {
 	margin: 0 5px;
 	cursor: pointer;
 	user-select: none;
+	border-bottom: 2px solid transparent;
+	transition: all 0.3s ease-in-out;
 }
 
 .selected {

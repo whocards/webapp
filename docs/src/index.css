@@ -6,9 +6,9 @@ body {
 html {
   --color-background: #623E3E;
   --color-text: #F5D1C3;
+  --color-button: #D98575;
   /* TODO rename to grays */
   --color-disabled: #484848;
-  --color-button: #5E5E5E;
   --color-button-hover: #323232;
   --height-navbar: 80px;
   background: var(--color-background);
