@@ -6,6 +6,7 @@ import './Header.css'
 import PageContext, {
 	PAGES,
 } from 'contexts/page.context';
+import { titleize } from '../../helpers';
 
 interface HeaderProps {}
 
@@ -26,8 +27,8 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
 					className={selected ? 'selected' : ''}
 					onClick={handleClick}
 				>
-					<span className={'capitalize selector'}>
-						{tab}
+					<span className={'selector'}>
+						{titleize(tab)}
 					</span>
 				</li>
 			)

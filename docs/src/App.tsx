@@ -1,13 +1,14 @@
-import React, {
-	useState,
-} from 'react'
+import PageContext, { Page } from 'contexts/page.context';
+import React, { useState } from 'react'
+import {
+	Helmet,
+	HelmetProvider,
+} from 'react-helmet-async';
 import './App.css';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import LanguageContext from './contexts/language.context';
 import { getDefaultLanguage } from './helpers'
-import { Cards } from './scenes/Cards';
-import PageContext, { Page } from 'contexts/page.context';
+import { About, Play, Print } from './scenes';
 
 function App() {
 	const [language, setLanguage] = useState(getDefaultLanguage())
@@ -22,11 +23,11 @@ function App() {
 					</Helmet>
 
 					<div className='app'>
-						<div className='app-header'>
-							<Header />
-						</div>
-						<div className='flex-center'>
-							<Cards />
+						<Header />
+						<div className='body flex-center'>
+							{page === Page.play && <Play />}
+							{page === Page.print && <Print />}
+							{page === Page.about && <About />}
 						</div>
 					</div>
 				</HelmetProvider>

@@ -10,8 +10,15 @@ html {
   --color-disabled: #484848;
   --color-button: #5E5E5E;
   --color-button-hover: #323232;
+  --height-navbar: 80px;
   background: var(--color-background);
   color: var(--color-text);
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+  margin-top: var(--height-navbar);
 }
 
 .flex-center {
@@ -62,9 +69,4 @@ div[class^='arrow-'] {
 
 .p1 {
   padding: 1em;
-}
-
-.capitalize {
-  user-select: none;
-  text-transform: capitalize;
 }

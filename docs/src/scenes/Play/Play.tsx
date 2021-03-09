@@ -1,16 +1,16 @@
 import React from 'react';
-import './Cards.css';
+import './Play.css';
 import { Questions } from 'components/Questions';
 import { Helmet } from 'react-helmet-async';
 
-interface CardsProps {}
+interface PlayProps {}
 
-export const Cards: React.FunctionComponent<CardsProps> = () => {
+export const Play: React.FunctionComponent<PlayProps> = () => {
 
 	return (
 		<div className='flex-center'>
 				<Helmet>
-					<title>Who Cards - Questions</title>
+					<title>Who Play - Questions</title>
 				</Helmet>
 			<Questions />
 		</div>

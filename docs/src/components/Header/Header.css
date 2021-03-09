@@ -2,6 +2,12 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: fixed;
+	top: 0;
+	width: calc(100% - 2em);
+	height: var(--height-navbar);
+	background: var(--color-background);
+	box-sizing: border-box;
 }
 
 .title {
@@ -30,6 +36,7 @@ li {
 	padding: 5px 10px;
 	margin: 0 5px;
 	cursor: pointer;
+	user-select: none;
 }
 
 .selected {

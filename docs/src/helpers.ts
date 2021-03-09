@@ -20,3 +20,5 @@ export const randomList = (min: number, max: number): number[] => {
 }
 
 export const isTouchDevice = (): boolean => 'ontouchstart' in window
+
+export const titleize = (str: string): string => str[0].toUpperCase() + str.slice(1).toLowerCase()
