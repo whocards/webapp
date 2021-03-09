@@ -1,11 +1,11 @@
 body {
   margin: 0;
-  font-family: proxima-nova, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html {
-  --color-background: #070707;
-  --color-text: #DEBC8E;
+  --color-background: #623E3E;
+  --color-text: #F5D1C3;
   /* TODO rename to grays */
   --color-disabled: #484848;
   --color-button: #5E5E5E;
@@ -52,12 +52,12 @@ div[class^='arrow-'] {
 
 .arrow-left:before {
   content: '\2039';
-  padding-right: .2em;
+  padding: .2em;
 }
 
 .arrow-right:after {
   content: '\203A';
-  padding-left: .2em;
+  padding: .2em;
 }
 
 .p1 {

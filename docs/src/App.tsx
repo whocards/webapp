@@ -1,5 +1,4 @@
 import React, {
-	useEffect,
 	useState,
 } from 'react'
 import './App.css';
@@ -8,39 +7,30 @@ import { Header } from './components/Header';
 import LanguageContext from './contexts/language.context';
 import { getDefaultLanguage } from './helpers'
 import { Cards } from './scenes/Cards';
-import { Website } from './scenes/Website';
+import PageContext, { Page } from 'contexts/page.context';
 
 function App() {
 	const [language, setLanguage] = useState(getDefaultLanguage())
-	const [showCards, setShowCards] = useState(false)
-
-	useEffect(() => {
-		const params = new URLSearchParams(window.location.search)
-		setShowCards(!!params.get('questions'))
-	}, [])
-
-	const value = { language, setLanguage }
-
-	const toggleShow = () => setShowCards(show => !show)
-
-	const Body: React.FunctionComponent<any> = showCards ? Cards : Website
+	const [page, setPage] = useState(Page.play)
 
 	return (
-		<LanguageContext.Provider value={ value }>
-			<HelmetProvider>
-				<Helmet>
-					<title>Who Cards</title>
-				</Helmet>
+		<LanguageContext.Provider value={{ language, setLanguage}}>
+			<PageContext.Provider value={{page, setPage}}>
+				<HelmetProvider>
+					<Helmet>
+						<title>Who Cards</title>
+					</Helmet>
 
-				<div className='app'>
-					<div className='app-header'>
-						<Header show={ showCards } toggle={ toggleShow }/>
+					<div className='app'>
+						<div className='app-header'>
+							<Header />
+						</div>
+						<div className='flex-center'>
+							<Cards />
+						</div>
 					</div>
-					<div className='flex-center'>
-						<Body showCards={toggleShow} />
-					</div>
-				</div>
-			</HelmetProvider>
+				</HelmetProvider>
+			</PageContext.Provider>
 		</LanguageContext.Provider>
 	);
 }

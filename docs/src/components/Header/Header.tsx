@@ -1,18 +1,43 @@
-import React from 'react'
+import React, {
+	useContext,
+} from 'react'
 import { LanguagesSelector } from 'components/LanguagesSelector';
 import './Header.css'
+import PageContext, {
+	PAGES,
+} from 'contexts/page.context';
 
-interface HeaderProps {
-	show: boolean,
-	toggle: Function,
-}
+interface HeaderProps {}
 
-export const Header: React.FunctionComponent<HeaderProps> = ({ show = false, toggle }) => {
+export const Header: React.FunctionComponent<HeaderProps> = () => {
+	const { page, setPage } = useContext(PageContext)
+
+	const tabs = () =>
+		PAGES.map(tab => {
+			const selected = page === tab
+			const handleClick = () => {
+				if (!selected) {
+					setPage(tab)
+				}
+			}
+			return (
+				<li
+					key={tab}
+					className={`selector${selected ? ' selected' : ''}`}
+					onClick={handleClick}
+				>
+					{tab}
+				</li>
+			)
+		})
 
 	return (
-		<header className='header-container'>
-			<h2 className='title p1 hover' onClick={() => toggle()}>Who Cards</h2>
-			{ show && <LanguagesSelector /> }
+		<header className='header-container p1'>
+			<div className='title'><b>Who</b>Cards</div>
+			<ul className='selectors'>
+				{tabs()}
+			</ul>
+			<LanguagesSelector />
 		</header>
 	);
 };

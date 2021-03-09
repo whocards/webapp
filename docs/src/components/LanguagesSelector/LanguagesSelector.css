@@ -1,6 +1,6 @@
 .selector-container {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	font-size: 1em;
 	padding-right: 1em;

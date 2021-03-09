@@ -1,3 +1,4 @@
+import useEventListener from '@use-it/event-listener';
 import React, {
 	useContext,
 	useState,
@@ -25,6 +26,10 @@ export const LanguagesSelector: React.FunctionComponent = () => {
 			setShow(set)
 		}
 	}
+
+	useEventListener('click', (event) => {
+
+	})
 
 	return (
 		<div
