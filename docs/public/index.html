@@ -7,7 +7,7 @@
     <meta property='og:title' content='Who Cards'/>
     <meta property='og:description' content='Getting to know people by who they are, not what they do'/>
     <meta property='og:type' content='website'/>
-    <meta property='og:url' content='https://whocards.cc?questions=true'/>
+    <meta property='og:url' content='https://whocards.cc'/>
     <meta property='og:site_name' content='Who Cards'/>
     <meta property='og:image' content='https://raw.githubusercontent.com/acharlop/whocards/main/images/1.png?raw=true'/>
     <!-- icons -->
@@ -29,6 +29,16 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FW5FW3EPEG"></script>
+    <script>
+      if (window.location.hostname !== 'localhost') {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FW5FW3EPEG');
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
