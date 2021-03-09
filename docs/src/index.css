@@ -63,3 +63,8 @@ div[class^='arrow-'] {
 .p1 {
   padding: 1em;
 }
+
+.capitalize {
+  user-select: none;
+  text-transform: capitalize;
+}

@@ -23,10 +23,12 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
 			return (
 				<li
 					key={tab}
-					className={`selector${selected ? ' selected' : ''}`}
+					className={selected ? 'selected' : ''}
 					onClick={handleClick}
 				>
-					{tab}
+					<span className={'capitalize selector'}>
+						{tab}
+					</span>
 				</li>
 			)
 		})
