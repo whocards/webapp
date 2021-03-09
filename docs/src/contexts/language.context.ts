@@ -9,8 +9,13 @@ interface IContextProps {
   setLanguage: Dispatch<SetStateAction<string>>;
 }
 
+const defaultPros: IContextProps = {
+  language: 'en',
+  setLanguage: () => {},
+}
+
 // set the defaults
-const LanguageContext: Context<IContextProps> = React.createContext({} as IContextProps)
+const LanguageContext: Context<IContextProps> = React.createContext(defaultPros)
 
 // @ts-ignore
 export default LanguageContext

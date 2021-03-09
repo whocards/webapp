@@ -1,58 +1,31 @@
-import useEventListener from '@use-it/event-listener';
 import React, {
 	useContext,
-	useState,
 } from 'react'
 import LanguageContext from 'contexts/language.context';
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
-import { isTouchDevice } from 'helpers';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
+// TODO change languages json file to this structure
+const languages = Object.entries(LANGUAGES).map(language => ({
+	label: language[1],
+	value: language[0],
+}))
 
 export const LanguagesSelector: React.FunctionComponent = () => {
-	const [show, setShow] = useState(false)
-	// @ts-ignore
 	const { language, setLanguage } = useContext(LanguageContext)
 
 	const change = (value: string) => {
 		setLanguage(value)
-		setShow(false)
 	}
-
-	const languages: string[] = Object.keys(LANGUAGES)
-	languages.splice(languages.indexOf(language), 1);
-
-	const hover = (set: boolean) => {
-		if (!isTouchDevice()) {
-			setShow(set)
-		}
-	}
-
-	useEventListener('click', (event) => {
-
-	})
 
 	return (
-		<div
-			className='selector-container'
-			onMouseEnter={() => hover(true)}
-			onMouseLeave={() => hover(false)}
-		>
-			{ show && languages.map(lang =>
-				<div
-					className='hover'
-					key={lang.toString()}
-					onClick={() => change(lang)}
-				>{lang}</div>
-			)}
-			<div
-				className='selected'
-				onClick={() => setShow(val => !val)}
-			>{language}</div>
-		</div>
-		// <select value={language} onChange={change}>
-		// 	{Object.entries(LANGUAGES).map(lang =>
-		// 		<option key={lang[0].toString()} value={lang[0]}>{lang[1]}</option>
-		// 	)}
-		// </select>
+		<Dropdown
+			value={language}
+			options={languages}
+			onChange={({ value }) => change(value)}
+			controlClassName='dropdown'
+		/>
 	)
 }

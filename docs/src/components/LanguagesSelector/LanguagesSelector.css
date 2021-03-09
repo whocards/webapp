@@ -10,7 +10,17 @@
 	padding: .5em;
 }
 
-.selected {
-	cursor: pointer;
-	user-select: none;
+.dropdown {
+	background-color: var(--color-background) !important;
+	color: var(--color-text) !important;
+	border: none !important;
+	font-weight: 500 !important;
+}
+
+.Dropdown-arrow {
+	border-color: var(--color-text) transparent transparent !important;
+}
+
+.is-open .Dropdown-arrow {
+	border-color: transparent transparent var(--color-text) !important;
 }
