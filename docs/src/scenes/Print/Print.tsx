@@ -6,6 +6,8 @@ import LANGUAGES from 'data/languages.json';
 interface PrintProps {}
 
 export const Print: React.FunctionComponent<PrintProps> = () => {
+	const open = (url: string) => window.open(url)
+
 	return (
 		<>
 			<Helmet>
@@ -16,10 +18,9 @@ export const Print: React.FunctionComponent<PrintProps> = () => {
 					<a
 						key={key}
 						className='button'
-						target='_blank'
 						rel='noreferrer'
-						href={`/cards/latest/whocards-${key}.pdf`}
 						download
+						onClick={() => open(`/cards/latest/whocards-${key}.pdf`)}
 					>{value}</a>
 				))}
 			</div>
