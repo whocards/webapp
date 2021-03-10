@@ -12,7 +12,15 @@ import { setStoredLanguage } from 'modules/Storage';
 const languages = Object.entries(LANGUAGES)
 	.map(([value , label]) => ({ label, value }))
 
-export const LanguagesSelector: React.FunctionComponent = () => {
+interface Props {
+	show: boolean;
+}
+
+const defaultProps: Props = {
+	show: true
+}
+
+export const LanguagesSelector: React.FunctionComponent<Props> = (props: Props) => {
 	const { language, setLanguage } = useContext(LanguageContext)
 
 	const change = (value: string) => {
@@ -25,7 +33,7 @@ export const LanguagesSelector: React.FunctionComponent = () => {
 			value={language}
 			options={languages}
 			onChange={({ value }) => change(value)}
-			controlClassName='dropdown'
+			controlClassName={`dropdown ${props.show ? '' : 'hide'}`}
 		/>
 	)
 }

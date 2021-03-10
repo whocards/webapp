@@ -70,3 +70,8 @@ div[class^='arrow-'] {
 .p1 {
   padding: 1em;
 }
+
+.w80 {
+  display: inline-block;
+  width: 80px;
+}

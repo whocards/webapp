@@ -1,12 +1,11 @@
-import React, {
-	useContext,
-} from 'react'
-import { LanguagesSelector } from 'components/LanguagesSelector';
-import './Header.css'
+import React, { useContext } from 'react'
 import PageContext, {
+	Page,
 	PAGES,
 } from 'contexts/page.context';
-import { titleize } from '../../helpers';
+import { LanguagesSelector } from 'components/LanguagesSelector';
+import { titleize } from 'helpers';
+import './Header.css'
 
 interface HeaderProps {}
 
@@ -27,7 +26,9 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
 					className={`tab${ selected ? ' active' : '' }`}
 					onClick={handleClick}
 				>
-					{titleize(tab)}
+					<span className='w80'>
+						{titleize(tab)}
+					</span>
 				</li>
 			)
 		})
@@ -39,7 +40,7 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
 				{tabs()}
 				<li className='slider' />
 			</ul>
-			<LanguagesSelector />
+			<LanguagesSelector show={page === Page.play} />
 		</header>
 	);
 };
