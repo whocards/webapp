@@ -24,12 +24,10 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
 			return (
 				<li
 					key={tab}
-					className={selected ? 'selected' : ''}
+					className={`tab${ selected ? ' active' : '' }`}
 					onClick={handleClick}
 				>
-					<span className={'selector'}>
-						{titleize(tab)}
-					</span>
+					{titleize(tab)}
 				</li>
 			)
 		})
@@ -37,8 +35,9 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
 	return (
 		<header className='header-container p1'>
 			<div className='title'><b>Who</b>Cards</div>
-			<ul className='selectors'>
+			<ul className='tabs'>
 				{tabs()}
+				<li className='slider' />
 			</ul>
 			<LanguagesSelector />
 		</header>
