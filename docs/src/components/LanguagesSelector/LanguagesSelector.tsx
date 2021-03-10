@@ -6,18 +6,18 @@ import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import { setStoredLanguage } from 'modules/Storage';
 
 // TODO change languages json file to this structure
-const languages = Object.entries(LANGUAGES).map(language => ({
-	label: language[1],
-	value: language[0],
-}))
+const languages = Object.entries(LANGUAGES)
+	.map(([value , label]) => ({ label, value }))
 
 export const LanguagesSelector: React.FunctionComponent = () => {
 	const { language, setLanguage } = useContext(LanguageContext)
 
 	const change = (value: string) => {
 		setLanguage(value)
+		setStoredLanguage(value)
 	}
 
 	return (

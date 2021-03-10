@@ -1,9 +1,21 @@
+import {
+	getStorage,
+	setStorage,
+} from './modules/Storage';
+
 export const randomNumber = (min: number, max: number): number =>
 	Math.floor(Math.random() * (max - min + 1) + min)
 
 export const getDefaultLanguage = (): string => {
-	const language = window.navigator.language
-	return language.startsWith('en') ? language.split('-')[0] : language
+	let language = getStorage().language
+	if (language) {
+		return language
+	}
+	language = window.navigator.language
+	language = language.startsWith('en') ? language.split('-')[0] : language
+	// TODO add check if supported language
+	setStorage('language', language)
+	return language
 }
 
 export const randomList = (min: number, max: number): number[] => {

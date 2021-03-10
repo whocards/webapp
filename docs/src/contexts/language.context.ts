@@ -3,6 +3,7 @@ import React, {
   Dispatch,
   SetStateAction,
 } from 'react';
+import { getDefaultLanguage } from '../helpers';
 
 interface IContextProps {
   language: string;
@@ -10,7 +11,7 @@ interface IContextProps {
 }
 
 const defaultPros: IContextProps = {
-  language: 'en',
+  language: getDefaultLanguage(),
   setLanguage: () => {},
 }
 
