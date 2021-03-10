@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async';
 import './Print.css'
-import LANGUAGES from '../../data/languages.json';
+import LANGUAGES from 'data/languages.json';
 
 interface PrintProps {}
 

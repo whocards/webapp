@@ -1,3 +1,8 @@
+.print-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
 .button {
 	background-color: var(--color-button);
 	color: var(--color-text);
