@@ -10,7 +10,7 @@ export const Play: React.FunctionComponent<PlayProps> = () => {
 	return (
 		<div className='flex-center'>
 				<Helmet>
-					<title>Who Play - Play</title>
+					<title>Who Cards - Play</title>
 				</Helmet>
 			<Questions />
 		</div>
