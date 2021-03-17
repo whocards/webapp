@@ -1,9 +1,9 @@
 .question {
 	max-width: 65vw;
-	font-size: 12.5vh;
 	font-weight: 300;
 	letter-spacing: 0;
-	line-height: 11vh;
+	font-size: clamp(2.5rem, 10vw, 7rem);
+	line-height: clamp(2.5rem, 10vw, 7rem);
 	text-align: center;
 	text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 	/*word-wrap: break-word;*/
