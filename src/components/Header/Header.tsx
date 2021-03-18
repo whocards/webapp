@@ -1,46 +1,31 @@
-import React, { useContext } from 'react'
-import PageContext, {
-	Page,
-	PAGES,
-} from 'contexts/page.context';
+import React from 'react'
+import { NavLink, useLocation } from 'react-router-dom';
 import { LanguagesSelector } from 'components/LanguagesSelector';
-import { titleize } from 'helpers';
 import './Header.css'
 
 interface HeaderProps {}
 
-export const Header: React.FunctionComponent<HeaderProps> = () => {
-	const { page, setPage } = useContext(PageContext)
+const tabsList: string[] = ['play', 'print', 'about']
+const tabsNamesList: string[] = ['Play', 'Print', 'About']
 
-	const tabs = () =>
-		PAGES.map(tab => {
-			const selected = page === tab
-			const handleClick = () => {
-				if (!selected) {
-					setPage(tab)
-				}
-			}
-			return (
-				<li
-					key={tab}
-					className={`tab${ selected ? ' active' : '' }`}
-					onClick={handleClick}
-				>
-					<span className='w80'>
-						{titleize(tab)}
-					</span>
-				</li>
-			)
-		})
+export const Header: React.FunctionComponent<HeaderProps> = () => {
+	const location = useLocation()
 
 	return (
 		<header className='header-container p1'>
 			<div className='title'><b>Who</b>Cards</div>
-			<ul className='tabs'>
-				{tabs()}
+			<div className='tabs'>
+				{tabsList.map((tab, index) => (
+					<NavLink to={tab} className='tab' activeClassName='active'>
+						<span className='w80'>
+							{tabsNamesList[index]}
+						</span>
+					</NavLink>
+				))}
+				{/*{tabs()}*/}
 				<li className='slider' />
-			</ul>
-			<LanguagesSelector show={page === Page.play} />
+			</div>
+			<LanguagesSelector show={location.pathname === '/play'} />
 		</header>
 	);
 };
