@@ -20,7 +20,7 @@ const defaultProps: Props = {
 	show: true
 }
 
-export const LanguagesSelector: React.FunctionComponent<Props> = (props: Props) => {
+export const LanguagesSelector: React.FunctionComponent<Props> = (props: Props = defaultProps) => {
 	const { language, setLanguage } = useContext(LanguageContext)
 
 	const change = (value: string) => {

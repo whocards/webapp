@@ -8,8 +8,11 @@ const defaultStorage: Storage = {
 	language: 'en'
 }
 
-export const getStorage = (): Storage =>
-	JSON.parse(localStorage.getItem(KEY) || '{}') as Storage
+export const getStorage = (): Storage => {
+	const stored = localStorage.getItem(KEY)
+
+	return stored ? JSON.parse(stored) as Storage : defaultStorage
+}
 
 export const setStorage = (key: string, value: string | number): Storage => {
 	const values = getStorage()
