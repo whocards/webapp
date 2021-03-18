@@ -10,20 +10,26 @@ jobs:
     name: Deploy to gh-pages
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Node.js for use with actions
+      - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-      - name: Clean install dependencies
+      - name: Install
         run: yarn install --frozen-lockfile
 
       # skipping tests for now
       # - name: Run tests
       #  run: yarn test
 
-      - name: Run deploy script
-        run: yarn deploy
+      - name: Build
+        run: yarn build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
