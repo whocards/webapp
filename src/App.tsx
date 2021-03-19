@@ -20,7 +20,7 @@ function App() {
 					<title>Who Cards</title>
 				</Helmet>
 
-				<Router basename={process.env.PUBLIC_URL}>
+				<Router basename={process.env.PUBLIC_URL + '/'}>
 					<div className='app'>
 						<Header />
 						<div className='body flex-center'>
