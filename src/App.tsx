@@ -25,7 +25,7 @@ function App() {
 						<Header />
 						<div className='body flex-center'>
 								<Switch>
-									<Route exact path='/play' component={Play} />
+									<Route exact path='/' component={Play} />
 									<Route exact path='/print' component={Print} />
 									<Route exact path='/about' component={About} />
 									<Redirect to='/play' />
