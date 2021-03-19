@@ -11,7 +11,6 @@ import {
 	Redirect,
 	Route,
 	Switch,
-	useLocation,
 } from 'react-router-dom'
 import { Header } from 'components/Header'
 import LanguageContext from 'contexts/language.context'
