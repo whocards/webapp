@@ -3,7 +3,7 @@ import {
 	Helmet,
 	HelmetProvider,
 } from 'react-helmet-async';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { Header } from 'components/Header';
 import LanguageContext from 'contexts/language.context';
 import { getDefaultLanguage } from 'helpers'
@@ -20,7 +20,7 @@ function App() {
 					<title>Who Cards</title>
 				</Helmet>
 
-				<BrowserRouter basename={process.env.PUBLIC_URL}>
+				<Router basename={process.env.PUBLIC_URL}>
 					<div className='app'>
 						<Header />
 						<div className='body flex-center'>
@@ -28,11 +28,11 @@ function App() {
 									<Route exact path='/' component={Play} />
 									<Route exact path='/print' component={Print} />
 									<Route exact path='/about' component={About} />
-									<Redirect to='/play' />
+									<Redirect to='/' />
 								</Switch>
 						</div>
 					</div>
-				</BrowserRouter>
+				</Router>
 			</HelmetProvider>
 		</LanguageContext.Provider>
 	);
