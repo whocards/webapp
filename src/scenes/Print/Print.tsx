@@ -1,11 +1,11 @@
-import LANGUAGES from 'data/languages.json';
 import React from 'react'
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async'
 import {
 	AnalyticsAction,
 	AnalyticsCategory,
 	gtagEvent,
-} from '../../modules/Analytics';
+} from 'modules/Analytics'
+import LANGUAGES from 'data/languages.json'
 import './Print.css'
 
 interface PrintProps {}
@@ -38,5 +38,5 @@ export const Print: React.FunctionComponent<PrintProps> = () => {
 				{/* eslint-enable jsx-a11y/anchor-is-valid */}
 			</div>
 		</>
-	);
-};
+	)
+}

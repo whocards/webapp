@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom';
-import { LanguagesSelector } from 'components/LanguagesSelector';
+import { NavLink, useLocation } from 'react-router-dom'
+import { LanguagesSelector } from 'components/LanguagesSelector'
 import './Header.css'
 
 interface HeaderProps {}
@@ -16,16 +16,15 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
 			<div className='title'><b>Who</b>Cards</div>
 			<div className='tabs'>
 				{tabsList.map((tab, index) => (
-					<NavLink to={tab} className='tab' activeClassName='active'>
+					<NavLink key={tab} to={tab} className='tab' activeClassName='active'>
 						<span className='w80'>
 							{tabsNamesList[index]}
 						</span>
 					</NavLink>
 				))}
-				{/*{tabs()}*/}
 				<li className='slider' />
 			</div>
-			<LanguagesSelector show={location.pathname === '/play'} />
+			<LanguagesSelector show={location.pathname === '/'} />
 		</header>
-	);
-};
+	)
+}

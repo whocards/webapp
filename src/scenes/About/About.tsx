@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async'
 import './About.css'
 
 interface AboutProps {}
@@ -24,5 +24,5 @@ export const About: React.FunctionComponent<AboutProps> = () => {
 				<p>Download a set in your language of choice,<br />Play online or in-person to reveal ‘our’ voice.</p>
 			</div>
 		</>
-	);
-};
+	)
+}

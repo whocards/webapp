@@ -1,7 +1,7 @@
-import React from 'react';
-import './Play.css';
-import { Questions } from 'components/Questions';
-import { Helmet } from 'react-helmet-async';
+import React from 'react'
+import './Play.css'
+import { Questions } from 'components/Questions'
+import { Helmet } from 'react-helmet-async'
 import MyceliumNetwork from 'images/shroom.png'
 
 interface PlayProps {}

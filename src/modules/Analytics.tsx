@@ -1,7 +1,7 @@
 import {
 	AnalyticsEvent,
-} from 'domains/Analytics';
-import { CustomWindow } from 'domains/CustomWindow';
+} from 'domains/Analytics'
+import { CustomWindow } from 'domains/CustomWindow'
 
 declare let window: CustomWindow
 
