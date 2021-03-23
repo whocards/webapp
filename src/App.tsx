@@ -7,7 +7,7 @@ import {
 	HelmetProvider,
 } from 'react-helmet-async'
 import {
-	MemoryRouter as Router,
+	BrowserRouter as Router,
 	Redirect,
 	Route,
 	Switch,
