@@ -1,12 +1,12 @@
 import React, {
 	useContext,
 } from 'react'
-import LanguageContext from 'contexts/language.context';
+import LanguageContext from 'contexts/language.context'
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import { setStoredLanguage } from 'modules/Storage';
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
+import { setStoredLanguage } from 'modules/Storage'
 
 // TODO change languages json file to this structure
 const languages = Object.entries(LANGUAGES)

@@ -1,12 +1,12 @@
-import useEventListener from '@use-it/event-listener';
-import LanguageContext from 'contexts/language.context';
+import useEventListener from '@use-it/event-listener'
+import LanguageContext from 'contexts/language.context'
 import QUESTIONS from 'data/questions.json'
-import { randomList } from 'helpers';
+import { randomList } from 'helpers'
 import {
 	AnalyticsAction,
 	AnalyticsCategory,
 	gtagEvent,
-} from 'modules/Analytics';
+} from 'modules/Analytics'
 import React, {
 	useCallback,
 	useContext,

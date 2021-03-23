@@ -1,39 +1,53 @@
-import PageContext, { Page } from 'contexts/page.context';
-import React, { useState } from 'react'
+import React, {
+	useEffect,
+	useState,
+} from 'react'
 import {
 	Helmet,
 	HelmetProvider,
-} from 'react-helmet-async';
-import './App.css';
-import { Header } from './components/Header';
-import LanguageContext from './contexts/language.context';
-import { getDefaultLanguage } from './helpers'
-import { About, Play, Print } from './scenes';
+} from 'react-helmet-async'
+import {
+	MemoryRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from 'react-router-dom'
+import { Header } from 'components/Header'
+import LanguageContext from 'contexts/language.context'
+import { getDefaultLanguage } from 'helpers'
+import { About, Play, Print } from 'scenes'
+import './App.css'
 
 function App() {
 	const [language, setLanguage] = useState(getDefaultLanguage())
-	const [page, setPage] = useState(Page.play)
+
+	useEffect(() => {
+		window.history.replaceState(null, '', '/')
+	}, [])
 
 	return (
 		<LanguageContext.Provider value={{ language, setLanguage}}>
-			<PageContext.Provider value={{page, setPage}}>
-				<HelmetProvider>
-					<Helmet>
-						<title>Who Cards</title>
-					</Helmet>
+			<HelmetProvider>
+				<Helmet>
+					<title>Who Cards</title>
+				</Helmet>
 
+				<Router>
 					<div className='app'>
 						<Header />
 						<div className='body flex-center'>
-							{page === Page.play && <Play />}
-							{page === Page.print && <Print />}
-							{page === Page.about && <About />}
+							<Switch>
+								<Route exact path='/' component={Play} />
+								<Route exact path='/print' component={Print} />
+								<Route exact path='/about' component={About} />
+								<Redirect to='/' />
+							</Switch>
 						</div>
 					</div>
-				</HelmetProvider>
-			</PageContext.Provider>
+				</Router>
+			</HelmetProvider>
 		</LanguageContext.Provider>
-	);
+	)
 }
 
-export default App;
+export default App
