@@ -1,7 +1,4 @@
-import React, {
-	useEffect,
-	useState,
-} from 'react'
+import React, { useState } from 'react'
 import {
 	Helmet,
 	HelmetProvider,
@@ -20,10 +17,6 @@ import './App.css'
 
 function App() {
 	const [language, setLanguage] = useState(getDefaultLanguage())
-
-	useEffect(() => {
-		window.history.replaceState(null, '', '/')
-	}, [])
 
 	return (
 		<LanguageContext.Provider value={{ language, setLanguage}}>
