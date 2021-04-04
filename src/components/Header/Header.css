@@ -50,6 +50,17 @@
 	transition: all 0.4s ease-in-out;
 }
 
+.slider {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 80px;
+	height: 2px;
+	background-color: var(--color-text);
+	transform-origin: 0 0;
+	transition: left 0.4s;
+}
+
 .tab:first-child.active ~ .slider {
 	left: 0;
 }
@@ -62,14 +73,12 @@
 	left: 160px;
 }
 
-.slider {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 80px;
-	height: 2px;
-	background-color: var(--color-text);
-	transform-origin: 0 0;
-	transition: left 0.4s;
+.tab:nth-child(4).active ~ .slider {
+	left: 240px;
+	width: 120px;
+}
+
+.tab:nth-child(5).active ~ .slider {
+	left: 360px;
 }
 

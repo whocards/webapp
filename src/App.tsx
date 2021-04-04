@@ -14,6 +14,7 @@ import LanguageContext from 'contexts/language.context'
 import { getDefaultLanguage } from 'helpers'
 import { About, Play, Print } from 'scenes'
 import './App.css'
+import { Modal } from './components/Modal';
 
 function App() {
 	const [language, setLanguage] = useState(getDefaultLanguage())
@@ -35,6 +36,7 @@ function App() {
 								<Route exact path='/about' component={About} />
 								<Redirect to='/' />
 							</Switch>
+							<Modal />
 						</div>
 					</div>
 				</Router>

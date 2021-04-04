@@ -1,6 +1,5 @@
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -11,8 +10,15 @@ html {
   --color-disabled: #484848;
   --color-button-hover: #323232;
   --height-navbar: 80px;
+  --radius: 8px;
+  --font: 'Montserrat', sans-serif;
   background: var(--color-background);
   color: var(--color-text);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
 }
 
 .body {
@@ -73,5 +79,76 @@ div[class^='arrow-'] {
 
 .w80 {
   display: inline-block;
-  width: 80px;
+  width: 5rem;
+}
+.w120 {
+  display: inline-block;
+  width: 7.5rem;
+}
+
+/* buttons */
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  cursor: pointer;
+  border-top-right-radius: var(--radius);
+}
+.btn-close:before,
+.btn-close:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 20px;
+  background-color: var(--color-text);
+  transform: rotate(45deg) translate(-50%, -50%);
+  transform-origin: top left;
+  content: '';
+}
+.btn-close:after {
+  transform: rotate(-45deg) translate(-50%, -50%);
+}
+
+.button {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border-radius: var(--radius);
+  display: inline-block;
+  cursor: pointer;
+  font-size: 21px;
+  padding: 12px;
+  width: 250px;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  margin: 10px;
+  border: none;
+  outline:none;
+}
+
+.button.full-width {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.button.upper {
+  text-transform: uppercase;
+}
+
+.button.disabled,
+.button[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.button:hover {
+  background-color: var(--color-button);
+  text-decoration: none;
+  color: var(--color-text);
 }

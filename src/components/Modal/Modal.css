@@ -1,0 +1,86 @@
+.modal-wrapper {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0,0,0,0.35);
+}
+
+.modal {
+	position: relative;
+	border-radius: var(--radius);
+	background-color: var(--color-background);
+	opacity: 100%;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+	display: flex;
+	max-width: 825px;
+	background-image: url('images/modalShrooms.png');
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+
+.modal-form {
+	margin: 3rem 8.5rem 5rem;
+}
+
+.modal-title {
+	font-weight: normal;
+	font-size: 2.5rem;
+}
+
+.modal-details {
+	margin: 25px 0;
+}
+
+/* INPUTS */
+.modal-input {
+	width: 100%;
+	margin: 10px 0;
+	border-radius: var(--radius);
+	background: transparent;
+	border: 1px solid var(--color-text);
+	min-height: 3rem;
+	padding: 0.5rem 1rem;
+	color: var(--color-text);
+	font: normal 1rem var(--font);
+	line-height: 1.5rem;
+}
+
+.modal-input::-webkit-input-placeholder {
+	color: var(--color-text);
+}
+
+.modal-input::-moz-placeholder {
+	color: var(--color-text);
+}
+
+.modal-input::-ms-placeholder {
+	color: var(--color-text);
+}
+
+.modal-input::placeholder {
+	color: var(--color-text);
+}
+
+textarea.modal-input {
+	display: inline-block;
+	resize: none;
+	min-height: 5.75rem;
+	max-height: 5.75rem;
+	height: 5.75rem;
+	cursor: text;
+	padding: 1rem;
+}
+
+.modal-input:focus {
+	border: 2px solid var(--color-text);
+	outline: none;
+	padding: 0.5rem calc(1rem - 1px);
+}
+
+textarea.modal-input:focus {
+	padding: calc(1rem - 1px);
+}

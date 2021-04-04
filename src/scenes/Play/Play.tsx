@@ -1,8 +1,9 @@
 import React from 'react'
-import './Play.css'
-import { Questions } from 'components/Questions'
 import { Helmet } from 'react-helmet-async'
+import { useLocation } from 'react-router-dom';
+import { Questions } from 'components/Questions'
 import MyceliumNetwork from 'images/shroom.png'
+import './Play.css'
 
 interface PlayProps {}
 
