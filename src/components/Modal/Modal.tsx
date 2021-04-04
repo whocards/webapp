@@ -62,8 +62,7 @@ export const Modal: React.FunctionComponent<Props> = () => {
       // set content
       setContent(undefined)
     }
-
-  }, [hash])
+  }, [hash]) //eslint-disable-line
 
   if (!hash || !content) return <></>
 
