@@ -14,6 +14,7 @@ import {
   IFormField,
   IFormModel,
 } from 'domains/FormModels';
+import { encode } from 'helpers'
 
 interface Props {}
 
@@ -26,7 +27,7 @@ export const Modal: React.FunctionComponent<Props> = () => {
 
   // @ts-ignore
   useEventListener('keydown', ({ key }) => {
-    if (hash && key.toLowerCase() === 'escape') {
+    if (hash && key?.toLowerCase() === 'escape') {
       history.push('/')
     }
   })
@@ -85,9 +86,10 @@ export const Modal: React.FunctionComponent<Props> = () => {
     const next = () => history.push(to)
 
     if (postUrl) {
-      fetch(postUrl, {
+      fetch('/', {
         method: 'POST',
-        body: JSON.stringify(form)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': hash, ...form })
       }).then(next)
     } else {
       next()
@@ -105,22 +107,27 @@ export const Modal: React.FunctionComponent<Props> = () => {
             {content.content.map((paragraph: any, key: number) =>
               <p key={key} className='modal-details' dangerouslySetInnerHTML={{__html: paragraph}} />)
             }
-            {content.fields.map((field: any, key: number) =>
-              React.createElement(field.type === 'textarea' ? 'textarea' : 'input',
-                {
-                  key,
-                  ...field,
-                  className: 'modal-input',
-                  value: getFormValue(field.name),
-                  onChange: (event: any) => setFormValue(field.name, event)
-                })
-            )}
-            <button
-              className={`button full-width upper${isFormValid() && isEmailValid() ? '' : ' disabled'}` }
-              onClick={submit}
-            >
-              {content.submit.text}
-            </button>
+            { //@ts-ignore
+              <form onSubmit={ submit } netlify>
+                { content.fields.map((field: any, key: number) =>
+                  React.createElement(field.type === 'textarea' ? 'textarea' : 'input',
+                    {
+                      key,
+                      ...field,
+                      className: 'modal-input',
+                      value:     getFormValue(field.name),
+                      onChange:  (event: any) => setFormValue(field.name, event)
+                    })
+                ) }
+                <button
+                  type='submit'
+                  className={ `button full-width upper${ isFormValid() && isEmailValid() ? '' : ' disabled' }` }
+                  onClick={ submit }
+                >
+                  { content.submit.text }
+                </button>
+              </form>
+            }
           </div>
         </div>
       </div>
