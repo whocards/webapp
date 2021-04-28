@@ -2,17 +2,9 @@ import React, {
 	useContext,
 	useState,
 } from 'react';
-import {
-	Language,
-	LanguageContext,
-} from 'contexts/language.context';
+import { LanguageContext } from 'contexts/language.context';
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
-import { setStoredLanguage } from 'modules/Storage'
-
-// TODO change languages json file to this structure
-const languages = Object.entries(LANGUAGES)
-	.map(([value , label]) => ({ label, value }))
 
 interface Props {
 	show: boolean;

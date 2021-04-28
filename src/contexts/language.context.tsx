@@ -15,10 +15,6 @@ interface ContextProps {
   setLanguage: Function
 }
 
-interface ProviderProps {
-  language: Language;
-}
-
 const defaultPros: ContextProps = {
   language: Storage.getDefaultLanguage() as Language,
   setLanguage: () => {},
