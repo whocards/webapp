@@ -21,6 +21,10 @@ html {
   margin-top: var(--height-navbar);
 }
 
+.body.lower {
+  z-index: -1;
+}
+
 .flex-center {
   display: flex;
   flex: 1;

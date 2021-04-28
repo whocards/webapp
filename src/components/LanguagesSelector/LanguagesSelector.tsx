@@ -1,16 +1,10 @@
 import React, {
 	useContext,
-} from 'react'
-import LanguageContext from 'contexts/language.context'
+	useState,
+} from 'react';
+import { LanguageContext } from 'contexts/language.context';
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
-import Dropdown from 'react-dropdown'
-import 'react-dropdown/style.css'
-import { setStoredLanguage } from 'modules/Storage'
-
-// TODO change languages json file to this structure
-const languages = Object.entries(LANGUAGES)
-	.map(([value , label]) => ({ label, value }))
 
 interface Props {
 	show: boolean;
@@ -20,20 +14,35 @@ const defaultProps: Props = {
 	show: true
 }
 
-export const LanguagesSelector: React.FunctionComponent<Props> = (props: Props = defaultProps) => {
+export const LanguagesSelector: React.FunctionComponent<Props> = ({ show }: Props = defaultProps) => {
+	const [open, setOpen] = useState(false);
 	const { language, setLanguage } = useContext(LanguageContext)
 
-	const change = (value: string) => {
+	const change = (value: any) => {
 		setLanguage(value)
-		setStoredLanguage(value)
+		setOpen(false)
 	}
 
+	const toggleOpen = () => setOpen(!open)
+
 	return (
-		<Dropdown
-			value={language}
-			options={languages}
-			onChange={({ value }) => change(value)}
-			controlClassName={`dropdown ${props.show ? '' : 'hide'}`}
-		/>
+		<div className={ `dropdown-root${show ? '' : ' hide'}` }>
+			<div className={ `dropdown-control ${open ? ' is-open' : ''}` } onClick={toggleOpen}>
+				{/* @ts-expect-error */}
+				<div className='dropdown-placeholder'>{LANGUAGES[language]}</div>
+				<span className='dropdown-arrow' />
+			</div>
+			{ open && <div className='dropdown-menu'>
+				{ Object
+					.entries(LANGUAGES)
+					.filter(([key]) => key !== language)
+					.map(([key, value]) => (
+					<div key={key} className='dropdown-option' onClick={ () => change(key) }>
+						{ value }
+					</div>
+				)) }
+			</div>
+			}
+		</div>
 	)
 }

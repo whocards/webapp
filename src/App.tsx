@@ -1,7 +1,4 @@
-import React, {
-	useEffect,
-	useState,
-} from 'react'
+import React, { PropsWithChildren } from 'react';
 import {
 	Helmet,
 	HelmetProvider,
@@ -11,22 +8,16 @@ import {
 	Redirect,
 	Route,
 	Switch,
-} from 'react-router-dom'
+	useLocation,
+} from 'react-router-dom';
 import { Header } from 'components/Header'
-import LanguageContext from 'contexts/language.context'
-import { getDefaultLanguage } from 'helpers'
+import { LanguageProvider } from 'contexts/language.context';
 import { About, Play, Print } from 'scenes'
 import './App.css'
 
 function App() {
-	const [language, setLanguage] = useState(getDefaultLanguage())
-
-	useEffect(() => {
-		window.history.replaceState(null, '', '/')
-	}, [])
-
 	return (
-		<LanguageContext.Provider value={{ language, setLanguage}}>
+		<LanguageProvider>
 			<HelmetProvider>
 				<Helmet>
 					<title>Who Cards</title>
@@ -35,18 +26,25 @@ function App() {
 				<Router>
 					<div className='app'>
 						<Header />
-						<div className='body flex-center'>
+						<Body>
 							<Switch>
 								<Route exact path='/' component={Play} />
 								<Route exact path='/print' component={Print} />
 								<Route exact path='/about' component={About} />
 								<Redirect to='/' />
 							</Switch>
-						</div>
+						</Body>
 					</div>
 				</Router>
 			</HelmetProvider>
-		</LanguageContext.Provider>
+		</LanguageProvider>
+	)
+}
+
+const Body = ({children}: PropsWithChildren<any>) => {
+	const location = useLocation()
+	return (
+		<div className={ `body flex-center${location.pathname === '/' ? ' lower' : ''}` }>{children}</div>
 	)
 }
 
