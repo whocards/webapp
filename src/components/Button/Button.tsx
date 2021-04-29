@@ -1,18 +1,14 @@
-import React, {
-  createElement,
-  PropsWithChildren,
-  memo,
-} from 'react';
-import {ReactComponent as Loader } from 'images/spinner.svg';
+import React, { createElement, PropsWithChildren, memo } from 'react'
+import { ReactComponent as Loader } from 'images/spinner.svg'
 import './Button.css'
 
-interface Props extends PropsWithChildren<any>{
-  loading?: boolean;
-  disabled?: boolean;
-  className?: string;
-  linkProps?: Object;
-  onClick?: Function;
-  fullWidth?: boolean;
+interface Props extends PropsWithChildren<any> {
+  loading?: boolean
+  disabled?: boolean
+  className?: string
+  linkProps?: Object
+  onClick?: Function
+  fullWidth?: boolean
 }
 
 const defaultProps: Props = {
@@ -29,7 +25,9 @@ export const Button = memo((props: Props = defaultProps) => {
     props.className,
     props.loading ? 'loading' : '',
     props.fullWidth ? 'full-width' : '',
-  ].filter(Boolean).join(' ')
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   const elProps: any = {
     className,
@@ -38,9 +36,7 @@ export const Button = memo((props: Props = defaultProps) => {
     disabled: props.disabled,
   }
 
-  const elChildren = [
-    props.children,
-  ]
+  const elChildren = [props.children]
 
   if (props.loading) {
     elChildren.push(<Loader key='loader' className='loader' />)

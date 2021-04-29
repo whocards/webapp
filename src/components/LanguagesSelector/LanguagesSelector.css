@@ -1,76 +1,76 @@
 .dropdown-root {
-	position: relative;
-	cursor: pointer;
-	transition: all 0.5s ease-in-out;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 
 .dropdown-root.hide {
-	opacity: 0;
+  opacity: 0;
 }
 
 .dropdown-control {
-	position: relative;
-	overflow: hidden;
-	box-sizing: border-box;
-	outline: none;
-	padding: 8px 0;
-	font-weight: 500;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  outline: none;
+  padding: 8px 0;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dropdown-control:hover {
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
 }
 
 .dropdown-placeholder {
-	width: 170px;
+  width: 170px;
 }
 
 .dropdown-arrow {
-	border-color: var(--color-text) transparent transparent;
-	border-style: solid;
-	border-width: 7px 7px 0;
-	content: ' ';
-	display: block;
-	height: 0;
-	width: 0
+  border-color: var(--color-text) transparent transparent;
+  border-style: solid;
+  border-width: 7px 7px 0;
+  content: ' ';
+  display: block;
+  height: 0;
+  width: 0;
 }
 
 .is-open .dropdown-arrow {
-	border-color: transparent transparent var(--color-text);
-	border-width: 0 7px 7px;
+  border-color: transparent transparent var(--color-text);
+  border-width: 0 7px 7px;
 }
 
 .dropdown-menu {
-	background-color: var(--color-text);
-	box-sizing: border-box;
-	margin-top: -1px;
-	max-height: 210px;
-	position: absolute;
-	overflow: auto;
-	top: 100%;
-	width: 100%;
-	z-index: 1000;
-	-webkit-overflow-scrolling: touch;
-	border-radius: 2px;
+  background-color: var(--color-text);
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 210px;
+  position: absolute;
+  overflow: auto;
+  top: 100%;
+  width: 100%;
+  z-index: 1000;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 2px;
 }
 
 .dropdown-option {
-	box-sizing: border-box;
-	color: var(--color-background);
-	cursor: pointer;
-	display: block;
-	padding: 8px 10px;
+  box-sizing: border-box;
+  color: var(--color-background);
+  cursor: pointer;
+  display: block;
+  padding: 8px 10px;
 }
 
 .dropdown-option:last-child {
-	border-bottom-right-radius: 2px;
-	border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
 
 .dropdown-option:hover {
-	background-color: var(--color-button-hover);
-	transition: all 0.5s ease-in-out;
+  background-color: var(--color-button-hover);
+  transition: all 0.5s ease-in-out;
 }

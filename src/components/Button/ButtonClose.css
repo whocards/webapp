@@ -1,26 +1,26 @@
 .btn-close {
-	position: absolute;
-	top: 0;
-	right: 0;
-	display: block;
-	width: 50px;
-	height: 50px;
-	font-size: 0;
-	cursor: pointer;
-	border-top-right-radius: var(--radius);
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  cursor: pointer;
+  border-top-right-radius: var(--radius);
 }
 .btn-close:before,
 .btn-close:after {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 3px;
-	height: 20px;
-	background-color: var(--color-text);
-	transform: rotate(45deg) translate(-50%, -50%);
-	transform-origin: top left;
-	content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 20px;
+  background-color: var(--color-text);
+  transform: rotate(45deg) translate(-50%, -50%);
+  transform-origin: top left;
+  content: '';
 }
 .btn-close:after {
-	transform: rotate(-45deg) translate(-50%, -50%);
+  transform: rotate(-45deg) translate(-50%, -50%);
 }

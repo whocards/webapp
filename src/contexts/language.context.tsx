@@ -3,15 +3,15 @@ import React, {
   createContext,
   PropsWithChildren,
   useState,
-} from 'react';
+} from 'react'
 import LANGUAGES from 'data/languages.json'
-import * as Storage from 'modules/Storage';
+import * as Storage from 'modules/Storage'
 
 const keys = Object.keys(LANGUAGES)
 export type Language = typeof keys[number]
 
 interface ContextProps {
-  language: Language;
+  language: Language
   setLanguage: Function
 }
 
@@ -23,7 +23,7 @@ const defaultPros: ContextProps = {
 // set the defaults
 export const LanguageContext: Context<ContextProps> = createContext(defaultPros)
 
-export const LanguageProvider = ({children}: PropsWithChildren<any>) => {
+export const LanguageProvider = ({ children }: PropsWithChildren<any>) => {
   const [language, languageChange] = useState(Storage.getDefaultLanguage())
 
   const provider: ContextProps = {
@@ -33,10 +33,12 @@ export const LanguageProvider = ({children}: PropsWithChildren<any>) => {
         Storage.setStoredLanguage(newLanguage)
         languageChange(newLanguage)
       }
-    }
+    },
   }
 
   return (
-    <LanguageContext.Provider value={provider}>{children}</LanguageContext.Provider>
+    <LanguageContext.Provider value={provider}>
+      {children}
+    </LanguageContext.Provider>
   )
 }
