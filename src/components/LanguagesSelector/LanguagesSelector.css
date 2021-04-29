@@ -1,7 +1,7 @@
 .dropdown-root {
 	position: relative;
 	cursor: pointer;
-	transition: all 0.3s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
 
 .dropdown-root.hide {
@@ -44,7 +44,7 @@
 }
 
 .dropdown-menu {
-	background-color: white;
+	background-color: var(--color-text);
 	box-sizing: border-box;
 	margin-top: -1px;
 	max-height: 210px;
@@ -59,7 +59,7 @@
 
 .dropdown-option {
 	box-sizing: border-box;
-	color: var(--color-disabled);
+	color: var(--color-background);
 	cursor: pointer;
 	display: block;
 	padding: 8px 10px;
@@ -71,6 +71,6 @@
 }
 
 .dropdown-option:hover {
-	background-color: var(--color-button);
-	color: var(--color-button-hover);
+	background-color: var(--color-button-hover);
+	transition: all 0.5s ease-in-out;
 }
