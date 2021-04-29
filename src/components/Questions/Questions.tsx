@@ -14,6 +14,7 @@ import './Questions.css'
 interface QuestionsProps {}
 
 const MAX: number = QUESTIONS.length - 1
+const MOVE: number = 150
 
 export const Questions: React.FunctionComponent<QuestionsProps> = () => {
   // @ts-ignore
@@ -21,6 +22,7 @@ export const Questions: React.FunctionComponent<QuestionsProps> = () => {
   const [list] = useState(randomList(1, MAX))
   const [index, setIndex] = useState<number>(0)
   const [total, setTotal] = useState<number>(1)
+  const [touch, setTouch] = useState<number>(0)
 
   const hasNext = index < MAX - 1
   const hasPrevious = !!index
@@ -78,6 +80,27 @@ export const Questions: React.FunctionComponent<QuestionsProps> = () => {
     } else if (key === 'ArrowLeft') {
       previous()
     }
+  })
+
+  useEventListener('touchstart', (event: TouchEvent) => {
+    setTouch(event.targetTouches[0].clientX)
+  })
+
+  useEventListener('touchmove', (event: TouchEvent) => {
+    if (touch > -1) {
+      const touched = event.changedTouches[0].clientX - touch
+      if (touched > MOVE) {
+        next()
+        setTouch(-1)
+      } else if (Math.abs(touched) > MOVE) {
+        previous()
+        setTouch(-1)
+      }
+    }
+  })
+
+  useEventListener('touchend', () => {
+    setTouch(0)
   })
 
   // @ts-ignore
