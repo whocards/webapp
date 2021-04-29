@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Helmet } from 'react-helmet-async'
 import {
 	AnalyticsAction,
@@ -7,6 +7,7 @@ import {
 } from 'modules/Analytics'
 import LANGUAGES from 'data/languages.json'
 import './Print.css'
+import { Button } from 'components/Button';
 
 interface PrintProps {}
 
@@ -27,13 +28,18 @@ export const Print: React.FunctionComponent<PrintProps> = () => {
 			<div className='print-wrapper'>
 				{/* eslint-disable jsx-a11y/anchor-is-valid */}
 				{ Object.entries(LANGUAGES).map(([key, value]) => (
-					<a
+					<Button
 						key={key}
-						className='button'
-						rel='noreferrer'
-						download
+						linkProps={{
+							rel: 'noreferrer',
+							download: true,
+							target: '_blank'
+						}}
+						fullWidth
 						onClick={() => open(key, value)}
-					>{value}</a>
+					>
+						{value}
+					</Button>
 				))}
 				{/* eslint-enable jsx-a11y/anchor-is-valid */}
 			</div>

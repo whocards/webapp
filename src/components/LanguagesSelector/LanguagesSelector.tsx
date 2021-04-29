@@ -1,7 +1,10 @@
 import React, {
 	useContext,
+	useEffect,
+	useRef,
 	useState,
 } from 'react';
+import useEventListener from '@use-it/event-listener'
 import { LanguageContext } from 'contexts/language.context';
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
@@ -15,8 +18,20 @@ const defaultProps: Props = {
 }
 
 export const LanguagesSelector: React.FunctionComponent<Props> = ({ show }: Props = defaultProps) => {
+	const ref = useRef<HTMLDivElement>(null)
 	const [open, setOpen] = useState(false);
 	const { language, setLanguage } = useContext(LanguageContext)
+
+	useEffect(() => {
+		setOpen(false)
+	}, [setOpen, show])
+
+	useEventListener('click', (event) => {
+		// @ts-ignore
+		if (!ref?.current?.contains(event.target)) {
+			setOpen(false)
+		}
+	})
 
 	const change = (value: any) => {
 		setLanguage(value)
@@ -26,7 +41,7 @@ export const LanguagesSelector: React.FunctionComponent<Props> = ({ show }: Prop
 	const toggleOpen = () => setOpen(!open)
 
 	return (
-		<div className={ `dropdown-root${show ? '' : ' hide'}` }>
+		<div ref={ref} className={ `dropdown-root${show ? '' : ' hide'}` }>
 			<div className={ `dropdown-control ${open ? ' is-open' : ''}` } onClick={toggleOpen}>
 				{/* @ts-expect-error */}
 				<div className='dropdown-placeholder'>{LANGUAGES[language]}</div>
