@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { LanguagesSelector } from 'components/LanguagesSelector'
 import './Header.css'
 
-interface HeaderProps {}
-
 const tabsList: string[] = ['play', 'print', 'about']
 const tabsNamesList: string[] = ['Play', 'Print', 'About']
 
-export const Header: React.FunctionComponent<HeaderProps> = () => {
+export const Header: React.FunctionComponent = memo(() => {
   const location = useLocation()
 
   return (
@@ -27,4 +25,4 @@ export const Header: React.FunctionComponent<HeaderProps> = () => {
       <LanguagesSelector show={location.pathname === '/'} />
     </header>
   )
-}
+})

@@ -30,12 +30,6 @@ svg {
 
 .body {
   width: 100%;
-  height: calc(100vh - var(--height-navbar));
-  margin-top: var(--height-navbar);
-}
-
-.body.lower {
-  z-index: -1;
 }
 
 .flex-center {
@@ -85,7 +79,7 @@ div[class^='arrow-'] {
 }
 
 .p1 {
-  padding: 1em;
+  padding: 1rem;
 }
 
 .w80 {

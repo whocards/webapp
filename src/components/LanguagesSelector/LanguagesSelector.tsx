@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import useEventListener from '@use-it/event-listener'
 import { LanguageContext } from 'contexts/language.context'
 import LANGUAGES from 'data/languages.json'
@@ -19,23 +25,27 @@ export const LanguagesSelector: React.FunctionComponent<Props> = ({
   const [open, setOpen] = useState(false)
   const { language, setLanguage } = useContext(LanguageContext)
 
+  const close = useCallback(() => setOpen(false), [])
+  const toggleOpen = () => setOpen(!open)
+
   useEffect(() => {
-    setOpen(false)
-  }, [setOpen, show])
+    close()
+  }, [close, show])
 
   useEventListener('click', (event) => {
     // @ts-ignore
     if (!ref?.current?.contains(event.target)) {
-      setOpen(false)
+      close()
     }
   })
 
-  const change = (value: any) => {
-    setLanguage(value)
-    setOpen(false)
-  }
-
-  const toggleOpen = () => setOpen(!open)
+  const change = useCallback(
+    (value: any) => {
+      setLanguage(value)
+      close()
+    },
+    [close, setLanguage],
+  )
 
   return (
     <div ref={ref} className={`dropdown-root${show ? '' : ' hide'}`}>
