@@ -5,7 +5,6 @@
   "license": "MIT",
   "homepage": "https://whocard.cc",
   "scripts": {
-    "preinstall": "npmrc default",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
