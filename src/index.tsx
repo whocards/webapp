@@ -4,10 +4,12 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import LogRocket from 'logrocket'
+import setupLogRocketReact from 'logrocket-react'
 
 const logRocketId = process.env.REACT_APP_LOG_ROCKET_ID
 if (logRocketId) {
   LogRocket.init(logRocketId)
+  setupLogRocketReact(LogRocket)
 }
 
 ReactDOM.render(
