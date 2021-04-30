@@ -26,7 +26,6 @@ const ViewportProvider = ({
   const [isMobile, setIsMobile] = useState<boolean>(isSmall())
 
   const handleWindowResize = () => {
-    console.log(isSmall(), window.innerWidth, Breakpoints.small)
     setIsMobile(isSmall())
   }
 
