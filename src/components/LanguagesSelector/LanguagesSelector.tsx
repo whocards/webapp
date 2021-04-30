@@ -1,63 +1,87 @@
 import React, {
-	useContext,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import useEventListener from '@use-it/event-listener'
-import { LanguageContext } from 'contexts/language.context';
+import { LanguageContext } from 'contexts/Language'
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
 
 interface Props {
-	show: boolean;
+  show: boolean
+  className?: string
+  onChange?: () => void
 }
 
 const defaultProps: Props = {
-	show: true
+  show: true,
+  className: '',
 }
 
-export const LanguagesSelector: React.FunctionComponent<Props> = ({ show }: Props = defaultProps) => {
-	const ref = useRef<HTMLDivElement>(null)
-	const [open, setOpen] = useState(false);
-	const { language, setLanguage } = useContext(LanguageContext)
+export const LanguagesSelector: React.FC<Props> = ({
+  show,
+  className,
+  onChange,
+}: Props = defaultProps) => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [open, setOpen] = useState(false)
+  const { language, setLanguage } = useContext(LanguageContext)
 
-	useEffect(() => {
-		setOpen(false)
-	}, [setOpen, show])
+  const close = useCallback(() => setOpen(false), [])
+  const toggleOpen = () => setOpen(!open)
 
-	useEventListener('click', (event) => {
-		// @ts-ignore
-		if (!ref?.current?.contains(event.target)) {
-			setOpen(false)
-		}
-	})
+  useEffect(() => {
+    close()
+  }, [close, show])
 
-	const change = (value: any) => {
-		setLanguage(value)
-		setOpen(false)
-	}
+  useEventListener('click', (event) => {
+    // @ts-ignore
+    if (!ref?.current?.contains(event.target)) {
+      close()
+    }
+  })
 
-	const toggleOpen = () => setOpen(!open)
+  const change = useCallback(
+    (value: any) => {
+      setLanguage(value)
+      onChange?.()
+      close()
+    },
+    [close, setLanguage, onChange],
+  )
 
-	return (
-		<div ref={ref} className={ `dropdown-root${show ? '' : ' hide'}` }>
-			<div className={ `dropdown-control ${open ? ' is-open' : ''}` } onClick={toggleOpen}>
-				{/* @ts-expect-error */}
-				<div className='dropdown-placeholder'>{LANGUAGES[language]}</div>
-				<span className='dropdown-arrow' />
-			</div>
-			{ open && <div className='dropdown-menu'>
-				{ Object
-					.entries(LANGUAGES)
-					.filter(([key]) => key !== language)
-					.map(([key, value]) => (
-					<div key={key} className='dropdown-option' onClick={ () => change(key) }>
-						{ value }
-					</div>
-				)) }
-			</div>
-			}
-		</div>
-	)
+  const classes = ['dropdown-root', show || 'hide', className]
+    .filter(Boolean)
+    .join(' ')
+
+  return (
+    <div ref={ref} className={classes}>
+      <div
+        className={`dropdown-control ${open ? ' is-open' : ''}`}
+        onClick={toggleOpen}
+      >
+        {/* @ts-expect-error */}
+        <div className='dropdown-placeholder'>{LANGUAGES[language]}</div>
+        <span className='dropdown-arrow' />
+      </div>
+      {open && (
+        <div className='dropdown-menu'>
+          {Object.entries(LANGUAGES)
+            .filter(([key]) => key !== language)
+            .map(([key, value]) => (
+              <div
+                key={key}
+                className='dropdown-option'
+                onClick={() => change(key)}
+              >
+                {value}
+              </div>
+            ))}
+        </div>
+      )}
+    </div>
+  )
 }

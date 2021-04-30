@@ -1,19 +1,22 @@
 export const randomNumber = (min: number, max: number): number =>
-	Math.floor(Math.random() * (max - min + 1) + min)
+  Math.floor(Math.random() * (max - min + 1) + min)
 
 export const randomList = (min: number, max: number): number[] => {
-	// create full list
-	const array = Array(max - min + 1).fill(0).map((_, idx) => min + idx)
+  // create full list
+  const array = Array(max - min + 1)
+    .fill(0)
+    .map((_, idx) => min + idx)
 
-	// randomize
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
-	}
+  // randomize
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[array[i], array[j]] = [array[j], array[i]]
+  }
 
-	return array
+  return array
 }
 
 export const isTouchDevice = (): boolean => 'ontouchstart' in window
 
-export const titleize = (str: string): string => str[0].toUpperCase() + str.slice(1).toLowerCase()
+export const titleize = (str: string): string =>
+  str[0].toUpperCase() + str.slice(1).toLowerCase()

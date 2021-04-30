@@ -1,30 +1,30 @@
-import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import React, { memo, useContext, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { LanguagesSelector } from 'components/LanguagesSelector'
 import './Header.css'
+import { ViewPortContext } from 'contexts/ViewPort'
+import MenuLarge from './MenuLarge'
+import MenuSmall from './MenuSmall'
 
-interface HeaderProps {}
+export const Header: React.FC = memo(() => {
+  const location = useLocation()
+  const showLanguageSelector = location.pathname === '/'
+  const { isMobile } = useContext(ViewPortContext)
+  const [isOpen, setIsOpen] = useState(false)
 
-const tabsList: string[] = ['play', 'print', 'about']
-const tabsNamesList: string[] = ['Play', 'Print', 'About']
+  const Menu = isMobile ? MenuSmall : MenuLarge
 
-export const Header: React.FunctionComponent<HeaderProps> = () => {
-	const location = useLocation()
-
-	return (
-		<header className='header-container p1'>
-			<div className='title'><b>Who</b>Cards</div>
-			<div className='tabs'>
-				{tabsList.map((tab, index) => (
-					<NavLink key={tab} to={tab} className='tab' activeClassName='active'>
-						<span className='w80'>
-							{tabsNamesList[index]}
-						</span>
-					</NavLink>
-				))}
-				<li className='slider' />
-			</div>
-			<LanguagesSelector show={location.pathname === '/'} />
-		</header>
-	)
-}
+  return (
+    <header className='header-container p1'>
+      <div className='title'>
+        <b>Who</b>Cards
+      </div>
+      <Menu isOpen={isOpen} setIsOpen={setIsOpen}>
+        <LanguagesSelector
+          show={showLanguageSelector}
+          onChange={() => setIsOpen(false)}
+        />
+      </Menu>
+    </header>
+  )
+})

@@ -1,75 +1,22 @@
 .header-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	width: calc(100% - 2em);
-	height: var(--height-navbar);
-	background: var(--color-background);
-	box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: var(--height-navbar);
+  background: var(--color-background);
+  box-sizing: border-box;
 }
 
 .title {
-	user-select: none;
-	margin: 0;
-	font-size: 40px;
-	font-weight: 300;
-	letter-spacing: 0;
-	line-height: 48px;
+  user-select: none;
+  margin: 0;
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 48px;
 }
 
 .title b {
-	font-weight: 500;
+  font-weight: 500;
 }
-
-.tabs {
-	list-style: none;
-	margin: 5px 0 0;
-	padding: 0;
-	position: relative;
-	height: 30px;
-}
-
-.tabs:after {
-	content: ' ';
-	display: table;
-	clear: both;
-}
-
-.tab {
-	color: var(--color-text);
-	display: inline;
-	height: 25px;
-	font-weight: 500;
-	letter-spacing: 0;
-	line-height: 24px;
-	cursor: pointer;
-	user-select: none;
-	border-bottom: 2px solid transparent;
-	transition: all 0.4s ease-in-out;
-}
-
-.tab:first-child.active ~ .slider {
-	left: 0;
-}
-
-.tab:nth-child(2).active ~ .slider {
-	left: 80px;
-}
-
-.tab:nth-child(3).active ~ .slider {
-	left: 160px;
-}
-
-.slider {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 80px;
-	height: 2px;
-	background-color: var(--color-text);
-	transform-origin: 0 0;
-	transition: left 0.4s;
-}
-
