@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import LogRocket from 'logrocket'
+
+const logRocketId = process.env.REACT_APP_LOG_ROCKET_ID
+if (logRocketId) {
+  LogRocket.init(logRocketId)
+}
 
 ReactDOM.render(
   <React.StrictMode>
