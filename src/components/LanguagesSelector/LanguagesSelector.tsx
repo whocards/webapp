@@ -13,6 +13,7 @@ import './LanguagesSelector.css'
 interface Props {
   show: boolean
   className?: string
+  onChange?: () => void
 }
 
 const defaultProps: Props = {
@@ -23,6 +24,7 @@ const defaultProps: Props = {
 export const LanguagesSelector: React.FC<Props> = ({
   show,
   className,
+  onChange,
 }: Props = defaultProps) => {
   const ref = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
@@ -45,9 +47,10 @@ export const LanguagesSelector: React.FC<Props> = ({
   const change = useCallback(
     (value: any) => {
       setLanguage(value)
+      onChange?.()
       close()
     },
-    [close, setLanguage],
+    [close, setLanguage, onChange],
   )
 
   const classes = ['dropdown-root', show || 'hide', className]

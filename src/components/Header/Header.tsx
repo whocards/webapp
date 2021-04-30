@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react'
+import React, { memo, useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { LanguagesSelector } from 'components/LanguagesSelector'
 import './Header.css'
@@ -10,6 +10,7 @@ export const Header: React.FC = memo(() => {
   const location = useLocation()
   const showLanguageSelector = location.pathname === '/'
   const { isMobile } = useContext(ViewPortContext)
+  const [isOpen, setIsOpen] = useState(false)
 
   const Menu = isMobile ? MenuSmall : MenuLarge
 
@@ -18,8 +19,11 @@ export const Header: React.FC = memo(() => {
       <div className='title'>
         <b>Who</b>Cards
       </div>
-      <Menu>
-        <LanguagesSelector show={showLanguageSelector} />
+      <Menu isOpen={isOpen} setIsOpen={setIsOpen}>
+        <LanguagesSelector
+          show={showLanguageSelector}
+          onChange={() => setIsOpen(false)}
+        />
       </Menu>
     </header>
   )

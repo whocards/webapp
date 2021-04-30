@@ -1,14 +1,15 @@
-import React, { PropsWithChildren, useState, MouseEvent } from 'react'
+import React, { PropsWithChildren, MouseEvent } from 'react'
 import { NavLink } from 'react-router-dom'
 import Tabs from 'constants/Tabs'
 import ButtonHamburger from 'components/Button/ButtonHamburger'
 import './MenuSmall.css'
 
-interface Props extends PropsWithChildren<Record<never, never>> {}
+interface Props extends PropsWithChildren<Record<never, never>> {
+  isOpen: boolean
+  setIsOpen: (arg0: boolean) => void
+}
 
-const MenuSmall: React.FC<Props> = ({ children }: Props) => {
-  const [isOpen, setIsOpen] = useState(false)
-
+const MenuSmall: React.FC<Props> = ({ children, isOpen, setIsOpen }: Props) => {
   const toggle = () => setIsOpen(!isOpen)
   const close = () => setIsOpen(false)
 
