@@ -1,28 +1,33 @@
-import React, { memo } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import React, { memo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { LanguagesSelector } from 'components/LanguagesSelector'
 import './Header.css'
+import Breakpoints from 'constants/Breakpoints'
+import useEventListener from '@use-it/event-listener'
+import MenuLarge from './MenuLarge'
+import MenuSmall from './MenuSmall'
 
-const tabsList: string[] = ['play', 'print', 'about']
-const tabsNamesList: string[] = ['Play', 'Print', 'About']
+const getIsSmall = () => window.innerWidth <= Breakpoints.small
 
-export const Header: React.FunctionComponent = memo(() => {
+export const Header: React.FC = memo(() => {
   const location = useLocation()
+  const showLanguageSelector = location.pathname === '/'
+  const [isSmall, setIsSmall] = useState<boolean>(getIsSmall())
+
+  useEventListener('resize', () => {
+    setIsSmall(getIsSmall())
+  })
+
+  const Menu = isSmall ? MenuSmall : MenuLarge
 
   return (
     <header className='header-container p1'>
       <div className='title'>
         <b>Who</b>Cards
       </div>
-      <div className='tabs'>
-        {tabsList.map((tab, index) => (
-          <NavLink key={tab} to={tab} className='tab' activeClassName='active'>
-            <span className='w80'>{tabsNamesList[index]}</span>
-          </NavLink>
-        ))}
-        <li className='slider' />
-      </div>
-      <LanguagesSelector show={location.pathname === '/'} />
+      <Menu>
+        <LanguagesSelector show={showLanguageSelector} />
+      </Menu>
     </header>
   )
 })

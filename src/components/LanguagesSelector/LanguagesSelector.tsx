@@ -12,14 +12,17 @@ import './LanguagesSelector.css'
 
 interface Props {
   show: boolean
+  className?: string
 }
 
 const defaultProps: Props = {
   show: true,
+  className: '',
 }
 
-export const LanguagesSelector: React.FunctionComponent<Props> = ({
+export const LanguagesSelector: React.FC<Props> = ({
   show,
+  className,
 }: Props = defaultProps) => {
   const ref = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
@@ -47,8 +50,12 @@ export const LanguagesSelector: React.FunctionComponent<Props> = ({
     [close, setLanguage],
   )
 
+  const classes = ['dropdown-root', show || 'hide', className]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div ref={ref} className={`dropdown-root${show ? '' : ' hide'}`}>
+    <div ref={ref} className={classes}>
       <div
         className={`dropdown-control ${open ? ' is-open' : ''}`}
         onClick={toggleOpen}

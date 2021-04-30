@@ -18,8 +18,10 @@ html {
   --color-button-hover: #eaa285;
   --color-button-disabled: #c78a73;
   --height-navbar: 80px;
+  --height-navbar-inner: 48px;
   --radius: 8px;
   --box-shadow: 0 2px 4px 0 rgba(240, 188, 168, 0.4);
+  --responsive-small: 786px;
   background: var(--color-background);
   color: var(--color-text);
 }
@@ -43,6 +45,14 @@ svg {
   display: flex;
   flex: 1;
   justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -86,3 +96,28 @@ div[class^='arrow-'] {
   display: inline-block;
   width: 80px;
 }
+
+.hide-on-small {
+  visibility: hidden;
+}
+.show-on-small {
+  display: initial;
+}
+
+/*@media only screen and (min-width: 787px) {*/
+/*  .hide-on-small {*/
+/*    display: initial;*/
+/*  }*/
+/*  .show-on-small {*/
+/*    display: none;*/
+/*  }*/
+/*}*/
+
+/*@media only screen and (max-width: 786px) {*/
+/*  .hide-on-small {*/
+/*    display: none;*/
+/*  }*/
+/*  .show-on-small {*/
+/*    display: initial;*/
+/*  }*/
+/*}*/

@@ -107,7 +107,7 @@ export const Questions: React.FunctionComponent<QuestionsProps> = () => {
   const question = () => QUESTIONS[list[index]][language]
 
   return (
-    <div className='flex-row p1'>
+    <div className='flex-row flex-between p1'>
       <div
         className={`arrow-left hover ${hasPrevious ? '' : 'disabled'}`}
         onClick={previous}
