@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react'
 import useEventListener from '@use-it/event-listener'
-import { LanguageContext } from 'contexts/language.context'
+import { LanguageContext } from 'contexts/Language'
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
 
