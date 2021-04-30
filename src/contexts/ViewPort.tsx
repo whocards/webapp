@@ -6,15 +6,15 @@ import React, {
 } from 'react'
 import Breakpoints from 'constants/Breakpoints'
 
+const isSmall = () => window.innerWidth <= Breakpoints.small
+
 interface ContextProps {
   isMobile: boolean
 }
 
 const defaultProps: ContextProps = {
-  isMobile: false,
+  isMobile: isSmall(),
 }
-
-const isSmall = () => window.innerWidth <= Breakpoints.small
 
 export const ViewPortContext: Context<ContextProps> = createContext(
   defaultProps,
