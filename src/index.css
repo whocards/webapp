@@ -32,6 +32,7 @@ svg {
 
 .body {
   width: 100%;
+  height: calc(100vh - var(--height-navbar));
 }
 
 .flex-center {
