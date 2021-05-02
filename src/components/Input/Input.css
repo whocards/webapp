@@ -1,7 +1,11 @@
 .input-wrapper {
-  margin: 0.75rem 0;
+  margin-bottom: 0.75rem;
   position: relative;
   width: 100%;
+}
+
+.input-wrapper:first-of-type {
+  margin-top: 0.75rem;
 }
 
 .input {
@@ -14,6 +18,19 @@
   padding: 0.5rem 1rem;
   caret-color: transparent;
   transition: all 0.3s ease-in;
+  font-family: var(--font-family);
+  font-weight: 100;
+}
+
+.input:disabled {
+  background: var(--color-background-disabled);
+  color: var(--color-input-disabled);
+  border-color: var(--color-input-disabled);
+}
+
+.input-error {
+  color: var(--color-error);
+  border-color: var(--color-error);
 }
 
 .textarea-input {
@@ -24,11 +41,13 @@
   height: 5.75rem;
   cursor: text;
   padding: 1rem;
+  margin-bottom: -4px;
 }
 
 .input:focus {
   outline: none;
   caret-color: var(--color-text);
+  box-shadow: var(--box-shadow-dark);
 }
 
 .floating-label {
@@ -41,6 +60,7 @@
   letter-spacing: 0;
   line-height: 19px;
   text-transform: capitalize;
+  font-weight: 100;
 }
 
 .input:focus ~ .floating-label,
@@ -56,4 +76,29 @@
 .textarea:focus ~ .floating-label,
 .textarea:not(:placeholder-shown) ~ .floating-label {
   top: -0.6rem;
+}
+
+.input:disabled ~ .floating-label {
+  color: var(--color-input-disabled);
+}
+
+.input-error ~ .floating-label {
+  color: var(--color-error);
+}
+
+.input-error-label {
+  height: 15px;
+  min-height: 15px;
+  color: var(--color-error);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 15px;
+  display: block;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.input-error-label:first-letter {
+  text-transform: capitalize;
 }

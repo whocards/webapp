@@ -2,13 +2,9 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-}
-
 html {
   --color-background: #623e3e;
+  --color-background-disabled: #764d48;
   --color-text: #f5d1c3;
   --color-text-disabled: #a16868;
   --color-text-busy: #a97575;
@@ -17,13 +13,22 @@ html {
   --color-disabled: #a16868;
   --color-button-hover: #eaa285;
   --color-button-disabled: #c78a73;
+  --color-input-disabled: #ba938a;
+  --color-error: #ea7070;
   --height-navbar: 80px;
   --height-navbar-inner: 48px;
   --radius: 8px;
   --box-shadow: 0 2px 4px 0 rgba(240, 188, 168, 0.4);
+  --box-shadow-dark: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   --responsive-small: 786px;
+  --font-family: 'Montserrat', sans-serif;
   background: var(--color-background);
   color: var(--color-text);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
 }
 
 svg {

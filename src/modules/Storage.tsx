@@ -2,22 +2,25 @@ import LANGUAGES from 'data/languages.json'
 
 const KEY = 'whocards'
 
-interface Storage {
+type Keys = 'language' | 'name' | 'email'
+interface IStorage {
   language: string
+  name?: string
+  email?: string
 }
 
 const defaultLanguage = 'en'
-const defaultStorage: Storage = {
+const defaultStorage: IStorage = {
   language: defaultLanguage,
 }
 
-const getStorage = (): Storage => {
+const getStorage = (): IStorage => {
   const stored = localStorage.getItem(KEY)
 
-  return stored ? (JSON.parse(stored) as Storage) : defaultStorage
+  return stored ? (JSON.parse(stored) as IStorage) : defaultStorage
 }
 
-const setStorage = (key: string, value: string | number): Storage => {
+const setStorage = (key: string, value: string | number): IStorage => {
   const values = getStorage()
   // @ts-ignore
   values[key] = value
@@ -43,4 +46,18 @@ export const getDefaultLanguage = (): string => {
   }
   setStoredLanguage(language)
   return language
+}
+
+export const LocalStorage = {
+  get: (key: string) => {
+    if (key as keyof Keys) {
+      return getStorage()[key as keyof IStorage]
+    }
+    return undefined
+  },
+  set: (key: string, value: string | number) => {
+    if (key as keyof Keys) {
+      setStorage(key, value)
+    }
+  },
 }

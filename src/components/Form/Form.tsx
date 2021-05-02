@@ -1,39 +1,90 @@
-import React from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import { FormModels, BackButton } from 'constants/FormModels'
-
-import './Form.css'
 import { Button } from 'components/Button'
-import { Input } from 'components/Input/'
+import { Input } from 'components/Input'
+import { LocalStorage } from 'modules/Storage'
+import './Form.css'
 
 interface Props {
-  background?: boolean
+  background?: any
 }
 
 const defaultProps: Props = {
-  background: true,
+  background: false,
 }
 
 export const Form: React.FC<Props> = ({ background }: Props) => {
   const { pathname } = useLocation()
   const history = useHistory()
+  const [form, setForm] = useState<any>({})
+  const [hasError, setHasError] = useState(false)
+  const [required, setRequired] = useState<Array<string>>()
 
   const model = FormModels[pathname.split('/')[1]]
   const isThanks = pathname.split('/').length > 2
 
+  useEffect(() => {
+    if (!isThanks) {
+      // set form
+      setForm(
+        model.fields.reduce(
+          (obj, item) => ({
+            ...obj,
+            [item.name]: LocalStorage.get(item.name) || '',
+          }),
+          {},
+        ),
+      )
+      // set required
+      setRequired(
+        model.fields
+          .filter((field) => field.required)
+          .map((field) => field.name),
+      )
+    }
+  }, [model, isThanks])
+
   const backToQuestions = () => history.push('/')
+  const gotoThanks = () => {
+    history.push({
+      pathname: pathname + '/thanks',
+      state: { background },
+    })
+  }
+
+  const getFormValue = (name: string) => form[name] || ''
+
+  const setFormValue = (name: string, value: string) => {
+    setForm({ ...form, [name]: value })
+    LocalStorage.set(name, value)
+  }
+
+  const isEmailValid = (email: string): string => {
+    const isValid = !email || (email.includes('@') && !email.endsWith('@'))
+    if (!isValid) {
+      setHasError(true)
+      return 'email is invalid'
+    } else {
+      setHasError(false)
+      return ''
+    }
+  }
+  const hasRequired = (): boolean =>
+    !!required?.every((field: string) => !!form[field])
+  const isFormValid = (): boolean => hasRequired() && !hasError
 
   const classes = [
     'flex-column',
     'form-wrapper',
     isThanks ? 'form-thanks' : '',
-    background ? 'form-background' : '',
+    background ? '' : 'form-background',
   ]
     .filter(Boolean)
     .join(' ')
 
   return (
-    <div className={classes}>
+    <form className={classes}>
       <h2 className='form-title'>{model.title}</h2>
       {model[isThanks ? 'thanksContent' : 'content'].map(
         (paragraph: any, key: number) => (
@@ -53,18 +104,20 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
             placeholder={input.placeholder}
             required={input.required}
             textarea={input.textarea}
-            value={''}
+            value={getFormValue(input.name)}
+            onChange={(value) => setFormValue(input.name, value)}
+            validation={input.name === 'email' ? isEmailValid : undefined}
           />
         ))}
       {isThanks && <div className='spacer' />}
       <Button
-        disabled={!isThanks}
+        disabled={!(isThanks || isFormValid())}
         fullWidth
-        onClick={isThanks ? backToQuestions : () => {}}
+        onClick={isThanks ? backToQuestions : gotoThanks}
       >
         {isThanks ? BackButton : model.submit.text}
       </Button>
-    </div>
+    </form>
   )
 }
 

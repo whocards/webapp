@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import './Input.css'
 
 interface Props {
@@ -7,6 +7,8 @@ interface Props {
   onChange?: (arg0: string) => void
   required?: boolean
   textarea?: boolean
+  disabled?: boolean
+  validation?: (arg0: string) => string
 }
 
 const defaultProps: Props = {
@@ -14,6 +16,7 @@ const defaultProps: Props = {
   required: false,
   value: '',
   textarea: false,
+  disabled: false,
 }
 
 export const Input: React.FC<Props> = ({
@@ -22,9 +25,24 @@ export const Input: React.FC<Props> = ({
   onChange,
   required,
   textarea,
+  disabled,
+  validation,
 }: Props = defaultProps) => {
+  const [error, setError] = useState('')
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange?.(event.currentTarget.value)
+  }
+
+  const onFocus = () => setError('')
+
+  const onBlur = (e: any) => {
+    const { value } = e.target
+    if (!value && required) {
+      setError('Field is required')
+    } else if (validation) {
+      setError(validation(value))
+    }
   }
 
   return (
@@ -33,10 +51,18 @@ export const Input: React.FC<Props> = ({
         required,
         value,
         onChange: handleChange,
-        className: `${textarea ? 'textarea' : 'text'}-input input`,
+        className: `${textarea ? 'textarea' : 'text'}-input input${
+          error ? ' input-error' : ''
+        }`,
         placeholder: ' ',
+        disabled,
+        onBlur,
+        onFocus,
       })}
       <label className='floating-label'>{placeholder}</label>
+      <div className='input-error-label'>
+        {error ? error + ', please fill out this field.' : ''}
+      </div>
     </div>
   )
 }
