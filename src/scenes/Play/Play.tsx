@@ -4,9 +4,15 @@ import { Questions } from 'components/Questions'
 import { Helmet } from 'react-helmet-async'
 import MyceliumNetwork from 'images/shroom.png'
 
-interface PlayProps {}
+interface Props {
+  disabled: boolean
+}
 
-export const Play: React.FunctionComponent<PlayProps> = () => {
+const defaultProps = {
+  disabled: false,
+}
+
+export const Play: React.FunctionComponent<Props> = ({ disabled }: Props) => {
   return (
     <div className='play-container flex-center'>
       <Helmet>
@@ -17,7 +23,9 @@ export const Play: React.FunctionComponent<PlayProps> = () => {
         className='mycelium-network'
         alt='Two mushrooms representing the mycelium network'
       />
-      <Questions />
+      <Questions disabled={disabled} />
     </div>
   )
 }
+
+Play.defaultProps = defaultProps

@@ -11,12 +11,19 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useBeforeunload } from 'react-beforeunload'
 import './Questions.css'
 
-interface QuestionsProps {}
+interface Props {
+  disabled: boolean
+}
+
+const defaultProps: Props = {
+  disabled: false,
+}
 
 const MAX: number = QUESTIONS.length - 1
 const MOVE: number = 150
 
-export const Questions: React.FunctionComponent<QuestionsProps> = () => {
+// TODO move some of the logic up into Play scene
+export const Questions: React.FC<Props> = ({ disabled }: Props) => {
   // @ts-ignore
   const { language } = useContext(LanguageContext)
   const [list] = useState(randomList(1, MAX))
@@ -73,6 +80,7 @@ export const Questions: React.FunctionComponent<QuestionsProps> = () => {
   }
 
   useEventListener('keydown', (event) => {
+    if (disabled) return
     // @ts-ignore
     const { key } = event
     if (key === 'ArrowRight') {
@@ -83,11 +91,12 @@ export const Questions: React.FunctionComponent<QuestionsProps> = () => {
   })
 
   useEventListener('touchstart', (event: TouchEvent) => {
+    if (disabled) return
     setTouch(event.targetTouches[0].clientX)
   })
 
   useEventListener('touchmove', (event: TouchEvent) => {
-    if (touch > -1) {
+    if (touch > -1 && !disabled) {
       const touched = event.changedTouches[0].clientX - touch
       if (touched > MOVE) {
         next()
@@ -120,3 +129,5 @@ export const Questions: React.FunctionComponent<QuestionsProps> = () => {
     </div>
   )
 }
+
+Questions.defaultProps = defaultProps

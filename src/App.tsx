@@ -7,7 +7,7 @@ import ViewportProvider from 'contexts/ViewPort'
 import { Routes } from 'components/Routes'
 import './App.css'
 
-function App() {
+export const App: React.FC = () => {
   return (
     <LanguageProvider>
       <ViewportProvider>
@@ -29,5 +29,3 @@ function App() {
     </LanguageProvider>
   )
 }
-
-export default App

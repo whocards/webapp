@@ -5,6 +5,8 @@ import { Form } from 'components/Form'
 
 import './Routes.css'
 
+// TODO handle direct linking to thanks
+
 export const Routes: React.FC = () => {
   const location = useLocation()
   // @ts-ignore
@@ -13,7 +15,9 @@ export const Routes: React.FC = () => {
   return (
     <>
       <Switch location={background || location}>
-        <Route exact path='/' component={Play} />
+        <Route exact path='/'>
+          <Play disabled={!!background} />
+        </Route>
         <Route exact path='/print' component={Print} />
         <Route exact path='/about' component={About} />
         {!background && (
