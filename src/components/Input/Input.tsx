@@ -22,7 +22,7 @@ const defaultProps: Props = {
   },
 }
 
-const Input: React.FC<Props> = ({
+export const Input: React.FC<Props> = ({
   placeholder,
   value,
   onChange,
@@ -49,5 +49,3 @@ const Input: React.FC<Props> = ({
 }
 
 Input.defaultProps = defaultProps
-
-export default Input

@@ -53,7 +53,7 @@ export const LanguagesSelector: React.FC<Props> = ({
     [close, setLanguage, onChange],
   )
 
-  const classes = ['dropdown-root', show || 'hide', className]
+  const classes = ['dropdown-root', show ? 'show' : 'hide', className]
     .filter(Boolean)
     .join(' ')
 

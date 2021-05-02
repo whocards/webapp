@@ -1,0 +1,34 @@
+.form-wrapper {
+  border-radius: var(--radius);
+  background-color: var(--color-background);
+  background-image: url('images/modalShrooms.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  width: 100%;
+  padding: 15px 25px;
+}
+
+.form-thanks {
+  padding-bottom: 130px;
+}
+
+.form-title {
+  font-weight: normal;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.form-details {
+  margin: 0 0 25px;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 100;
+}
+
+.form-details:first-of-type {
+  margin-top: 25px;
+}
+
+.form-details b {
+  font-weight: 500;
+}

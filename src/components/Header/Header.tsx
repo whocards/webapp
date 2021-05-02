@@ -17,11 +17,12 @@ export const Header: React.FC = memo(() => {
   return (
     <header className='header-container p1'>
       <div className='title'>
-        <b>Who</b>Cards
+        <span className='bold'>Who</span>
+        <span>Cards</span>
       </div>
       <Menu isOpen={isOpen} setIsOpen={setIsOpen}>
         <LanguagesSelector
-          show={showLanguageSelector}
+          show={showLanguageSelector && (isMobile ? isOpen : true)}
           onChange={() => setIsOpen(false)}
         />
       </Menu>

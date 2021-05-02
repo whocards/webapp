@@ -95,7 +95,12 @@ div[class^='arrow-'] {
 
 .w80 {
   display: inline-block;
-  width: 80px;
+  width: 5rem;
+}
+
+.w120 {
+  display: inline-block;
+  width: 7.5rem;
 }
 
 .hide-on-small {
@@ -103,6 +108,10 @@ div[class^='arrow-'] {
 }
 .show-on-small {
   display: initial;
+}
+
+.spacer {
+  flex: 1;
 }
 
 /*@media only screen and (min-width: 787px) {*/
