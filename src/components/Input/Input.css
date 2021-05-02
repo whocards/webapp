@@ -59,8 +59,12 @@
   font-size: 16px;
   letter-spacing: 0;
   line-height: 19px;
-  text-transform: capitalize;
   font-weight: 100;
+  display: block;
+}
+
+.floating-label:first-letter {
+  text-transform: uppercase;
 }
 
 .input:focus ~ .floating-label,

@@ -48,7 +48,7 @@ export const Input: React.FC<Props> = ({
   }
 
   return (
-    <div className='input-wrapper'>
+    <div className='input-wrapper' hidden={name === 'bot-field'}>
       {React.createElement(textarea ? 'textarea' : 'input' || 'textarea', {
         required,
         value,
@@ -60,7 +60,6 @@ export const Input: React.FC<Props> = ({
         disabled,
         onBlur,
         onFocus,
-        hidden: name === 'bot-field',
       })}
       <label className='floating-label'>{placeholder}</label>
       <div className='input-error-label'>

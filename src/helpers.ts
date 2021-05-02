@@ -20,3 +20,16 @@ export const isTouchDevice = (): boolean => 'ontouchstart' in window
 
 export const titleize = (str: string): string =>
   str[0].toUpperCase() + str.slice(1).toLowerCase()
+
+export const IS_PROD = window.location.host === 'whocards.cc'
+
+export const encode = (data: { [key: string]: any }) => {
+  const formData = new FormData()
+  Object.keys(data).forEach((k) => {
+    formData.append(k, data[k])
+  })
+  return formData
+}
+
+export const cssClasses = (arr: Array<string | boolean | undefined>): string =>
+  arr.filter(Boolean).join(' ')

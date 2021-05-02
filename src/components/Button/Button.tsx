@@ -1,5 +1,6 @@
 import React, { createElement, PropsWithChildren, memo } from 'react'
 import { ReactComponent as Loader } from 'images/spinner.svg'
+import { cssClasses } from 'helpers'
 import './Button.css'
 
 interface Props extends PropsWithChildren<any> {
@@ -20,17 +21,15 @@ const defaultProps: Props = {
 export const Button = memo((props: Props = defaultProps) => {
   const tag = props.linkProps ? 'a' : 'button'
 
-  const className = [
+  const classes = [
     'button',
     props.className,
     props.loading ? 'loading' : '',
     props.fullWidth ? 'full-width' : '',
   ]
-    .filter(Boolean)
-    .join(' ')
 
   const elProps: any = {
-    className,
+    className: cssClasses(classes),
     onClick: props.onClick,
     ...props.linkProps,
     disabled: props.disabled,

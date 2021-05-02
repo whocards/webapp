@@ -27,6 +27,11 @@ export const sharedFields: IFormFields = [
 
 export const BackButton: string = 'back to the questions'
 
+export const FormNameMap: { [key: string]: string } = {
+  question: 'questions',
+  donate: 'donations',
+}
+
 export const FormModels: IFormModels = {
   question: {
     title: 'Add your question!',
@@ -38,7 +43,7 @@ export const FormModels: IFormModels = {
       'We believe in community and want to know what questions you want to know from those close to you, to make you closer!',
       'We’ll ask the question to ourselves and if we love it too, we’ll add it!',
     ],
-    thanksContent: ['Thanks for sharing your question!', '**We <3 you**'],
+    thanksContent: ['Thanks for sharing your question!', '**We love you!**'],
     fields: [
       ...sharedFields,
       {

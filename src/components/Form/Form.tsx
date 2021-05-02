@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { FormModels, BackButton } from 'constants/FormModels'
+import { FormModels, BackButton, FormNameMap } from 'constants/FormModels'
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
 import { LocalStorage } from 'modules/Storage'
 import './Form.css'
+import { cssClasses, encode, IS_PROD } from 'helpers'
 
 interface Props {
   background?: any
@@ -57,20 +58,25 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
   }
 
   const submit = () => {
-    if (form['bot-field']) return
-    setLoading(true)
-    const data = { ...form, 'form-name': formName }
-    const formData = new FormData()
-    Object.keys(data).forEach((k) => {
-      formData.append(k, data[k])
-    })
+    const url = process.env.REACT_APP_FORM_URL
+    if (!url) return
 
-    fetch('/', {
+    setLoading(true)
+
+    const data = {
+      ...form,
+      'form-name': `${FormNameMap[formName]}${IS_PROD ? '' : '-test'}`,
+    }
+
+    fetch(url, {
       method: 'POST',
-      body: formData,
+      body: encode(data),
     })
       .then(gotoThanks)
-      .catch(() => setLoading(false))
+      .catch((e) => {
+        console.error('form-submit-error', { e })
+        setLoading(false)
+      })
   }
 
   const getFormValue = (name: string) => form[name] || ''
@@ -100,11 +106,9 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
     isThanks ? 'form-thanks' : '',
     background ? '' : 'form-background',
   ]
-    .filter(Boolean)
-    .join(' ')
 
   return (
-    <div className={classes}>
+    <div className={cssClasses(classes)}>
       <h2 className='form-title'>{model.title}</h2>
       {model[isThanks ? 'thanksContent' : 'content'].map(
         (paragraph: any, key: number) => (
