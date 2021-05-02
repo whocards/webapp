@@ -9,6 +9,7 @@ interface Props {
   textarea?: boolean
   disabled?: boolean
   validation?: (arg0: string) => string
+  name?: string
 }
 
 const defaultProps: Props = {
@@ -27,6 +28,7 @@ export const Input: React.FC<Props> = ({
   textarea,
   disabled,
   validation,
+  name,
 }: Props = defaultProps) => {
   const [error, setError] = useState('')
 
@@ -58,6 +60,7 @@ export const Input: React.FC<Props> = ({
         disabled,
         onBlur,
         onFocus,
+        hidden: name === 'bot-field',
       })}
       <label className='floating-label'>{placeholder}</label>
       <div className='input-error-label'>

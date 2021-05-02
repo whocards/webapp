@@ -57,8 +57,9 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
   }
 
   const submit = () => {
+    if (form['bot-field']) return
     setLoading(true)
-    const data = { ...form, 'form-name': formName, 'bot-field': '' }
+    const data = { ...form, 'form-name': formName }
     const formData = new FormData()
     Object.keys(data).forEach((k) => {
       formData.append(k, data[k])
@@ -104,9 +105,6 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
 
   return (
     <div className={classes}>
-      <p hidden>
-        <input type='text' name='bot-field' />
-      </p>
       <h2 className='form-title'>{model.title}</h2>
       {model[isThanks ? 'thanksContent' : 'content'].map(
         (paragraph: any, key: number) => (
@@ -123,6 +121,7 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
         model.fields.map((input, index) => (
           <Input
             key={index}
+            name={input.name}
             placeholder={input.placeholder}
             required={input.required}
             textarea={input.textarea}

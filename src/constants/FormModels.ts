@@ -16,6 +16,13 @@ export const sharedFields: IFormFields = [
     placeholder: 'Email (optional)',
     required: false,
   },
+  {
+    textarea: false,
+    type: 'text',
+    name: 'bot-field',
+    placeholder: 'field',
+    required: false,
+  },
 ]
 
 export const BackButton: string = 'back to the questions'
