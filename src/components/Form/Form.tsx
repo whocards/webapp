@@ -20,8 +20,10 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
   const [form, setForm] = useState<any>({})
   const [hasError, setHasError] = useState(false)
   const [required, setRequired] = useState<Array<string>>()
+  const [loading, setLoading] = useState<boolean>(false)
 
-  const model = FormModels[pathname.split('/')[1]]
+  const formName = pathname.split('/')[1]
+  const model = FormModels[formName]
   const isThanks = pathname.split('/').length > 2
 
   useEffect(() => {
@@ -47,10 +49,27 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
 
   const backToQuestions = () => history.push('/')
   const gotoThanks = () => {
+    setLoading(false)
     history.push({
       pathname: pathname + '/thanks',
       state: { background },
     })
+  }
+
+  const submit = () => {
+    setLoading(true)
+    const data = { ...form, 'form-name': formName, 'bot-field': '' }
+    const formData = new FormData()
+    Object.keys(data).forEach((k) => {
+      formData.append(k, data[k])
+    })
+
+    fetch('/', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(gotoThanks)
+      .catch(() => setLoading(false))
   }
 
   const getFormValue = (name: string) => form[name] || ''
@@ -84,24 +103,10 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
     .join(' ')
 
   return (
-    <form
-      className={classes}
-      method={isThanks ? '' : 'post'}
-      data-netlify={!isThanks}
-      data-netlify-honeypot='bot-field'
-    >
-      {!isThanks && (
-        <>
-          <p hidden>
-            <input type='text' name='bot-field' />
-          </p>
-          <input
-            type='hidden'
-            name='form-name'
-            value={pathname.split('/')[1]}
-          />
-        </>
-      )}
+    <div className={classes}>
+      <p hidden>
+        <input type='text' name='bot-field' />
+      </p>
       <h2 className='form-title'>{model.title}</h2>
       {model[isThanks ? 'thanksContent' : 'content'].map(
         (paragraph: any, key: number) => (
@@ -128,14 +133,14 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
         ))}
       {isThanks && <div className='spacer' />}
       <Button
-        type={isThanks ? 'button' : 'submit'}
         disabled={!(isThanks || isFormValid())}
         fullWidth
-        onClick={isThanks ? backToQuestions : gotoThanks}
+        onClick={isThanks ? backToQuestions : submit}
+        loading={loading}
       >
         {isThanks ? BackButton : model.submit.text}
       </Button>
-    </form>
+    </div>
   )
 }
 

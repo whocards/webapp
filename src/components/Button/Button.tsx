@@ -9,14 +9,12 @@ interface Props extends PropsWithChildren<any> {
   linkProps?: Object
   onClick?: Function
   fullWidth?: boolean
-  type?: string
 }
 
 const defaultProps: Props = {
   loading: false,
   disabled: false,
   fullWidth: true,
-  type: 'button',
 }
 
 export const Button = memo((props: Props = defaultProps) => {
@@ -36,7 +34,6 @@ export const Button = memo((props: Props = defaultProps) => {
     onClick: props.onClick,
     ...props.linkProps,
     disabled: props.disabled,
-    type: props.type,
   }
 
   const elChildren = [props.children]
