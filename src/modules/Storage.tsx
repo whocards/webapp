@@ -2,7 +2,7 @@ import LANGUAGES from 'data/languages.json'
 
 const KEY = 'whocards'
 
-type Keys = 'language' | 'name' | 'email'
+const Keys = ['language', 'name', 'email']
 interface IStorage {
   language: string
   name?: string
@@ -50,13 +50,10 @@ export const getDefaultLanguage = (): string => {
 
 export const LocalStorage = {
   get: (key: string) => {
-    if (key as keyof Keys) {
-      return getStorage()[key as keyof IStorage]
-    }
-    return undefined
+    return Keys.includes(key) ? getStorage()[key as keyof IStorage] : undefined
   },
   set: (key: string, value: string | number) => {
-    if (key as keyof Keys) {
+    if (Keys.includes(key)) {
       setStorage(key, value)
     }
   },

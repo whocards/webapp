@@ -84,7 +84,24 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
     .join(' ')
 
   return (
-    <form className={classes}>
+    <form
+      className={classes}
+      method={isThanks ? '' : 'post'}
+      data-netlify={!isThanks}
+      data-netlify-honeypot='bot-field'
+    >
+      {!isThanks && (
+        <>
+          <p hidden>
+            <input type='text' name='bot-field' />
+          </p>
+          <input
+            type='hidden'
+            name='form-name'
+            value={pathname.split('/')[1]}
+          />
+        </>
+      )}
       <h2 className='form-title'>{model.title}</h2>
       {model[isThanks ? 'thanksContent' : 'content'].map(
         (paragraph: any, key: number) => (
@@ -111,6 +128,7 @@ export const Form: React.FC<Props> = ({ background }: Props) => {
         ))}
       {isThanks && <div className='spacer' />}
       <Button
+        type={isThanks ? 'button' : 'submit'}
         disabled={!(isThanks || isFormValid())}
         fullWidth
         onClick={isThanks ? backToQuestions : gotoThanks}
