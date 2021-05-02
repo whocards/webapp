@@ -7,9 +7,13 @@ import MenuLarge from './MenuLarge'
 import MenuSmall from './MenuSmall'
 
 export const Header: React.FC = memo(() => {
-  const location = useLocation()
-  const showLanguageSelector = location.pathname === '/'
   const { isMobile } = useContext(ViewPortContext)
+  const location = useLocation()
+  // @ts-ignore
+  const background = location?.state?.background
+
+  const showLanguageSelector =
+    location.pathname === '/' || background?.pathname === '/'
   const [isOpen, setIsOpen] = useState(false)
 
   const Menu = isMobile ? MenuSmall : MenuLarge

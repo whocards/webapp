@@ -6,21 +6,34 @@ import './Form.css'
 import { Button } from 'components/Button'
 import { Input } from 'components/Input/'
 
-export const Form: React.FC = () => {
+interface Props {
+  background?: boolean
+}
+
+const defaultProps: Props = {
+  background: true,
+}
+
+export const Form: React.FC<Props> = ({ background }: Props) => {
   const { pathname } = useLocation()
   const history = useHistory()
-
-  console.log({ pathname })
 
   const model = FormModels[pathname.split('/')[1]]
   const isThanks = pathname.split('/').length > 2
 
   const backToQuestions = () => history.push('/')
 
+  const classes = [
+    'flex-column',
+    'form-wrapper',
+    isThanks ? 'form-thanks' : '',
+    background ? 'form-background' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div
-      className={`flex-column form-wrapper${isThanks ? ' form-thanks' : ''}`}
-    >
+    <div className={classes}>
       <h2 className='form-title'>{model.title}</h2>
       {model[isThanks ? 'thanksContent' : 'content'].map(
         (paragraph: any, key: number) => (
@@ -54,3 +67,5 @@ export const Form: React.FC = () => {
     </div>
   )
 }
+
+Form.defaultProps = defaultProps

@@ -1,25 +1,19 @@
 import React, { ChangeEvent } from 'react'
-import { useLocation } from 'react-router-dom'
 import './Input.css'
 
 interface Props {
-  placeholder?: string
-  value?: string
+  placeholder: string
+  value: string
   onChange?: (arg0: string) => void
   required?: boolean
   textarea?: boolean
 }
 
-let value = ''
-
 const defaultProps: Props = {
-  placeholder: 'placeholder',
+  placeholder: '',
   required: false,
-  value,
+  value: '',
   textarea: false,
-  onChange: (newVal) => {
-    value = newVal
-  },
 }
 
 export const Input: React.FC<Props> = ({
@@ -29,11 +23,10 @@ export const Input: React.FC<Props> = ({
   required,
   textarea,
 }: Props = defaultProps) => {
-  const { hash } = useLocation()
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange?.(event.currentTarget.value)
   }
-  console.log(hash)
+
   return (
     <div className='input-wrapper'>
       {React.createElement(textarea ? 'textarea' : 'input' || 'textarea', {

@@ -1,3 +1,4 @@
 export * from './About'
-export * from './Print'
+export * from './Modal'
 export * from './Play'
+export * from './Print'

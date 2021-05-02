@@ -1,11 +1,14 @@
 .form-wrapper {
   border-radius: var(--radius);
   background-color: var(--color-background);
-  background-image: url('images/modalShrooms.png');
   background-repeat: no-repeat;
   background-position: bottom;
   width: 100%;
   padding: 15px 25px;
+}
+
+.form-background {
+  background-image: url('images/modalShrooms.png');
 }
 
 .form-thanks {
