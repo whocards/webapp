@@ -54,7 +54,15 @@ export const LanguagesSelector: React.FC<Props> = ({
     [close, setLanguage, onChange],
   )
 
-  const classes = ['dropdown-root', show ? 'show' : 'hide', className]
+  const classes = [
+    'header-item',
+    'dropdown-root',
+    show ? 'show' : 'hide',
+    className,
+  ]
+
+  // @ts-ignore
+  const selectedLanguage = LANGUAGES[language]
 
   return (
     <div ref={ref} className={cssClasses(classes)}>
@@ -62,8 +70,7 @@ export const LanguagesSelector: React.FC<Props> = ({
         className={`dropdown-control ${open ? ' is-open' : ''}`}
         onClick={toggleOpen}
       >
-        {/* @ts-expect-error */}
-        <div className='dropdown-placeholder'>{LANGUAGES[language]}</div>
+        <div className='dropdown-placeholder'>{selectedLanguage}</div>
         <span className='dropdown-arrow' />
       </div>
       {open && (

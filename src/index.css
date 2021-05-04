@@ -123,6 +123,10 @@ div[class^='arrow-'] {
   padding: 15px 25px;
 }
 
+a {
+  text-decoration: none;
+}
+
 /*@media only screen and (min-width: 787px) {*/
 /*  .hide-on-small {*/
 /*    display: initial;*/

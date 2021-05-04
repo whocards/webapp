@@ -2,6 +2,7 @@
   position: relative;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  width: 180px;
 }
 
 .dropdown-root.hide {
@@ -15,19 +16,15 @@
   overflow: hidden;
   box-sizing: border-box;
   outline: none;
-  padding: 8px 0;
+  flex: 1;
   font-weight: 500;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.dropdown-control:hover {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-}
-
 .dropdown-placeholder {
-  width: 170px;
+  margin-top: 2px;
+  flex: 1;
 }
 
 .dropdown-arrow {

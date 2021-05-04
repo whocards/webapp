@@ -20,8 +20,8 @@ export const Header: React.FC = memo(() => {
 
   return (
     <header className='header-container p1'>
-      <div className='title'>
-        <span className='bold'>Who</span>
+      <div className='header-item title'>
+        <b>Who</b>
         <span>Cards</span>
       </div>
       <Menu isOpen={isOpen} setIsOpen={setIsOpen}>

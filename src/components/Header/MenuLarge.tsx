@@ -1,16 +1,45 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import Routes from 'constants/Routes'
 import { NavLink, useLocation } from 'react-router-dom'
 import './MenuLarge.css'
+import ReactDOM from 'react-dom'
+
+interface Position {
+  left: number
+  width: number
+}
+
+const defaultPosition: Position = {
+  left: 0,
+  width: 0,
+}
 
 interface Props extends PropsWithChildren<Record<never, never>> {}
 
 const MenuLarge: React.FC<Props> = ({ children }: Props) => {
   const background = useLocation()
+  const [position, setPosition] = useState<Position>(defaultPosition)
+  const [activeTab, setActiveTab] = useState<number>(0)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const tab = (ReactDOM.findDOMNode(
+      ref.current,
+    ) as Element)?.querySelectorAll('.active')?.[0] as HTMLElement
+    if (tab) {
+      setPosition({
+        left: tab.offsetLeft,
+        width: tab.clientWidth,
+      })
+    }
+    return () => {
+      setPosition(defaultPosition)
+    }
+  }, [activeTab, setPosition, background])
 
   return (
     <>
-      <div className='tabs'>
+      <div className='header-item tabs' ref={ref}>
         {Object.entries(Routes).map(([tab, value], index) => (
           <NavLink
             key={tab}
@@ -25,11 +54,12 @@ const MenuLarge: React.FC<Props> = ({ children }: Props) => {
             className='tab'
             activeClassName='active'
             isActive={(_, location) => location.pathname.split('/')[1] === tab}
+            onClick={() => setActiveTab(index)}
           >
-            <span className={index === 3 ? 'w120' : 'w80'}>{value}</span>
+            {value}
           </NavLink>
         ))}
-        <li className='slider' />
+        <li className='slider' style={position} />
       </div>
       {children}
     </>
