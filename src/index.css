@@ -119,6 +119,10 @@ div[class^='arrow-'] {
   flex: 1;
 }
 
+.page-container {
+  padding: 15px 25px;
+}
+
 /*@media only screen and (min-width: 787px) {*/
 /*  .hide-on-small {*/
 /*    display: initial;*/
