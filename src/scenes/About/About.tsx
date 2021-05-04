@@ -10,7 +10,7 @@ export const About: React.FunctionComponent<AboutProps> = () => {
       <Helmet>
         <title>Who Cards - About</title>
       </Helmet>
-      <div className='about-wrapper'>
+      <div className='page-container'>
         <h1 className='about-title'>who are you?</h1>
         <p>
           Simply put, we believe you are not what you do.

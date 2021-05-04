@@ -1,5 +1,5 @@
 const Breakpoints = {
-  small: 786,
+  small: 888,
 }
 
 export default Breakpoints

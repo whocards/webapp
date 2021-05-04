@@ -15,8 +15,15 @@
   font-weight: 300;
   letter-spacing: 0;
   line-height: 48px;
+  white-space: initial;
+  display: flex;
 }
 
 .title b {
   font-weight: 500;
+}
+
+.header-item {
+  display: flex;
+  height: var(--height-navbar-inner);
 }

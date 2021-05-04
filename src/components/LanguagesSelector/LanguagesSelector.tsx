@@ -9,6 +9,7 @@ import useEventListener from '@use-it/event-listener'
 import { LanguageContext } from 'contexts/Language'
 import LANGUAGES from 'data/languages.json'
 import './LanguagesSelector.css'
+import { cssClasses } from 'helpers'
 
 interface Props {
   show: boolean
@@ -53,18 +54,23 @@ export const LanguagesSelector: React.FC<Props> = ({
     [close, setLanguage, onChange],
   )
 
-  const classes = ['dropdown-root', show || 'hide', className]
-    .filter(Boolean)
-    .join(' ')
+  const classes = [
+    'header-item',
+    'dropdown-root',
+    show ? 'show' : 'hide',
+    className,
+  ]
+
+  // @ts-ignore
+  const selectedLanguage = LANGUAGES[language]
 
   return (
-    <div ref={ref} className={classes}>
+    <div ref={ref} className={cssClasses(classes)}>
       <div
         className={`dropdown-control ${open ? ' is-open' : ''}`}
         onClick={toggleOpen}
       >
-        {/* @ts-expect-error */}
-        <div className='dropdown-placeholder'>{LANGUAGES[language]}</div>
+        <div className='dropdown-placeholder'>{selectedLanguage}</div>
         <span className='dropdown-arrow' />
       </div>
       {open && (

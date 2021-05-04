@@ -1,0 +1,108 @@
+.input-wrapper {
+  margin-bottom: 0.75rem;
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.input {
+  height: 3rem;
+  width: 100%;
+  border: 2px solid var(--color-text);
+  color: var(--color-text);
+  border-radius: 8px;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  caret-color: transparent;
+  transition: all 0.3s ease-in;
+  font-family: var(--font-family);
+  font-weight: 100;
+}
+
+.input:disabled {
+  background: var(--color-background-disabled);
+  color: var(--color-input-disabled);
+  border-color: var(--color-input-disabled);
+}
+
+.input-error {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.textarea-input {
+  display: inline-block;
+  resize: none;
+  min-height: 5.75rem;
+  max-height: 5.75rem;
+  height: 5.75rem;
+  cursor: text;
+  padding: 1rem;
+  margin-bottom: -4px;
+}
+
+.input:focus {
+  outline: none;
+  caret-color: var(--color-text);
+  box-shadow: var(--box-shadow-dark);
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 1rem;
+  top: calc(1rem - 2px);
+  transition: all 0.2s ease-in;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 19px;
+  font-weight: 100;
+  display: block;
+}
+
+.floating-label:first-letter {
+  text-transform: uppercase;
+}
+
+.input:focus ~ .floating-label,
+.input:not(:placeholder-shown) ~ .floating-label {
+  top: -0.55rem;
+  left: 0.5rem;
+  font-size: 12px;
+  opacity: 1;
+  background: var(--color-background);
+  padding: 0 2px;
+}
+
+.textarea:focus ~ .floating-label,
+.textarea:not(:placeholder-shown) ~ .floating-label {
+  top: -0.6rem;
+}
+
+.input:disabled ~ .floating-label {
+  color: var(--color-input-disabled);
+}
+
+.input-error ~ .floating-label {
+  color: var(--color-error);
+}
+
+.input-error-label {
+  height: 15px;
+  min-height: 15px;
+  color: var(--color-error);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 15px;
+  display: block;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.input-error-label:first-letter {
+  text-transform: capitalize;
+}

@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, MouseEvent } from 'react'
 import { NavLink } from 'react-router-dom'
-import Tabs from 'constants/Tabs'
+import Routes from 'constants/Routes'
 import ButtonHamburger from 'components/Button/ButtonHamburger'
 import './MenuSmall.css'
 
@@ -30,7 +30,7 @@ const MenuSmall: React.FC<Props> = ({ children, isOpen, setIsOpen }: Props) => {
         onClickCapture={clickOutside}
       >
         <div className={`side-menu-wrapper flex-column`}>
-          {Object.entries(Tabs).map(([tab, value]) => (
+          {Object.entries(Routes).map(([tab, value]) => (
             <NavLink
               onClick={close}
               exact
